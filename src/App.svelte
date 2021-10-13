@@ -3,8 +3,8 @@
 </script>
 
 <main>
-	<h1>Hello <span class="special">{name}</span>!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Olá <span class="special">{name}</span>!</h1>
+	<p>Visite <a href="https://svelte.dev/tutorial">Svelte</a> para aprender.</p>
 </main>
 
 <style lang="scss">
