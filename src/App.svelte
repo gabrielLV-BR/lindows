@@ -1,10 +1,9 @@
 <script>
-	export let name;
+	import Window from './system/Window.svelte'
 </script>
 
 <main>
-	<h1>Hello <span class="special">{name}</span>!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Window title="App"/>
 </main>
 
 <style lang="scss">
