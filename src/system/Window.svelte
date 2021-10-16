@@ -1,9 +1,34 @@
 <script>
-    export let título = "Janela"
+    import { createEventDispatcher } from 'svelte';
+
+    export let título = "Janela";
+    export let id;
+    export let App;
+
+    // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
+    // o que facilita a comunicação entre componentes
+    const dispatch = createEventDispatcher();
 
     let offsetX = 0, offsetY = 0;
 
     let janela = document.createElement('div');
+
+    // Botões da janela
+
+    const fechar = () => {
+        dispatch('message', { action: 'close', id });
+    }
+
+    const minimizar = () => {
+        dispatch('message', { action: 'minimize', id });
+    }
+
+    const maximizar = () => {
+        // Fazer algo aqui lol
+        return
+    }
+
+    // Movimentação da janela
 
     const mouseDown = (event) => {
         window.addEventListener('mousemove', mouseMove);
@@ -22,25 +47,33 @@
         janela.style.left = `${event.clientX - offsetX}px`;
         janela.style.top = `${event.clientY - offsetY}px`;
     }
+
+    // Etc.
+
+    const handleResize = (event) => {
+        return;
+    }
 </script>
 
-<div class="janela" on:mousedown={mouseDown} on:mouseup={mouseUp} bind:this={janela} >
-    <header>
+<div class="janela" bind:this={janela} on:resize={handleResize} >
+    <header on:mousedown={mouseDown} on:mouseup={mouseUp}>
         <!-- Ícone -->
         <span>A</span>
         <!-- Título -->
         <span>{título}</span>
         <!-- Botões de ação -->
         <span>
-            <button>-</button>
-            <button>[]</button>
-            <button>X</button>
+            <button on:click={minimizar}>-</button>
+            <button on:click={maximizar}>[]</button>
+            <button on:click={fechar}>X</button>
         </span>
     </header>
-    <main></main>
+    <main>
+        <svelte:component this={App} />
+    </main>
 </div>
 
-<style lang="scss">
+<style scoped lang="scss">
     .janela {
         position: absolute;
         left: 33%;
@@ -49,12 +82,16 @@
         width: 500px;
         height: 500px;
 
+        resize: both;
+
         background: #545454;
-        border-radius: 10px;
-
+        
+        $border: 10px;
+        
+        border-radius: $border;
         header {
-            border-radius: 9px 9px 0 0;
-
+            border-radius: $border $border 0 0;
+            height: 2rem;
             user-select: none;
 
             display: flex;
@@ -82,8 +119,14 @@
 
             cursor: move;
             background: #242424;
+        }
 
-            height: 2rem;
+        main {
+            width: 100%;
+            height: calc(100% - 2rem);
+            overflow: auto;
+
+            border-radius: 0 0 $border $border;
         }
 
     }
