@@ -2,6 +2,7 @@
   import Window from "./Window.svelte";
   import Programa from "./Programa.svelte";
   import Desktop from "./Desktop.svelte";
+  import Cronometro from "./Cronometro.svelte";
 
   let aplicativosAbertos = [
     {
@@ -50,6 +51,7 @@
 
 <div>
   <main>
+    <Cronometro/>
     {#each aplicativosAbertos as app}
       {#if !app.minimized}
         <Window

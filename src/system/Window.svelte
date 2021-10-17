@@ -63,8 +63,8 @@
         <span>{título}</span>
         <!-- Botões de ação -->
         <span>
-            <button on:click={minimizar}>-</button>
-            <button on:click={maximizar}>[]</button>
+            <button on:click={minimizar}>_</button>
+            <button on:click={maximizar}>[⠀]</button>
             <button on:click={fechar}>X</button>
         </span>
     </header>
@@ -115,6 +115,7 @@
 
             span > button:hover {
                 background-color: #454545;
+                color: #fff;
             }
 
             cursor: move;
