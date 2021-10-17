@@ -15,6 +15,10 @@
 
     // Botões da janela
 
+    const focar = () => {
+        dispatch('message', { action: 'focus', id });
+    }
+
     const fechar = () => {
         dispatch('message', { action: 'close', id });
     }
@@ -37,10 +41,13 @@
 
         offsetX = event.clientX - boundingBox.left;
         offsetY = event.clientY - boundingBox.top;
+
+        janela.style.zIndex = 2;
     }   
 
     const mouseUp = (event) => {
         window.removeEventListener('mousemove', mouseMove);
+        janela.style.zIndex = 1;
     }
 
     const mouseMove = (event) => {
@@ -55,7 +62,7 @@
     }
 </script>
 
-<div class="janela" bind:this={janela} on:resize={handleResize} >
+<div class="janela" on:click={focar} bind:this={janela} on:resize={handleResize} >
     <header on:mousedown={mouseDown} on:mouseup={mouseUp}>
         <!-- Ícone -->
         <span>A</span>
@@ -73,7 +80,7 @@
     </main>
 </div>
 
-<style scoped lang="scss">
+<style lang="scss">
     .janela {
         position: absolute;
         left: 33%;
@@ -81,6 +88,8 @@
 
         width: 500px;
         height: 500px;
+
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 
         resize: both;
 
@@ -128,6 +137,10 @@
             overflow: auto;
 
             border-radius: 0 0 $border $border;
+
+            &, * {
+                user-select: none;
+            }
         }
 
     }
