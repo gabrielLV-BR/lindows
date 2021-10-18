@@ -36,7 +36,6 @@
           aplicativosAbertos = aplicativosAbertos.filter(
             (app) => app !== aplicativo
           );
-          alert("Fechou!")
         case "minimize":
           aplicativo.minimized = true;
           aplicativosAbertos = [
@@ -80,20 +79,23 @@
       {/if}
     {/each}
   </main>
+  <!-- Esse footer atua como um 'wrapper' -->
   <footer class="barra-de-tarefas">
-    <button class="início" on:click={handleClickStart}>
-      <img src="res/images/logo.png" alt="Botão do início" />
-    </button>
-    <span class="aplicativos-abertos">
-      {#each aplicativosAbertos as app}
+    <div>
+      <button class="início" on:click={handleClickStart}>
+        <img src="res/images/logo.png" alt="Botão do início" />
+      </button>
+      <span class="aplicativos-abertos">
+        {#each aplicativosAbertos as app}
         <Icon
-          name={app.name}
-          image={app.image}
-          onClick={() => toggleMinimize(app.id)}
+        name={app.name}
+        image={app.image}
+        onClick={() => toggleMinimize(app.id)}
         />
-      {/each}
-    </span>
-    <span />
+        {/each}
+      </span>
+      <span />
+    </div>
   </footer>
 </div>
 
@@ -134,6 +136,8 @@
 
     background-color: rgb(20, 20, 20);
     height: 2.5rem;
+
+    z-index: 3;
 
     background-color: #223629;
     opacity: 0.9;

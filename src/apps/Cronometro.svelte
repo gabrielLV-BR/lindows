@@ -1,57 +1,62 @@
-<main class="cronometro">
-    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-    <button id="button-start">Start</button>
-    <button id="button-stop">Stop</button>
-    <button id="button-reset">Reset</button>
-</main>
-
 <script>
-    window.onload = function() {
-        var seconds = 0; 
-        var tens = 0; 
-        var appendTens = document.getElementById("tens")
-        var appendSeconds = document.getElementById("seconds")
-        var buttonStart = document.getElementById('button-start');
-        var buttonStop = document.getElementById('button-stop');
-        var buttonReset = document.getElementById('button-reset');
-        var Interval ;
-        buttonStart.onclick = function() { 
-            clearInterval(Interval);
-            Interval = setInterval(startTimer, 10);
-        }
-            buttonStop.onclick = function() {
-            clearInterval(Interval);
-        }
-        buttonReset.onclick = function() {
-            clearInterval(Interval);
-            tens = "00";
-            seconds = "00";
-            appendTens.innerHTML = tens;
-            appendSeconds.innerHTML = seconds;
-        }
-        function startTimer () {
-            tens++; 
-            if(tens <= 9){
-            appendTens.innerHTML = "0" + tens;
-            }
-            if (tens > 9){
-            appendTens.innerHTML = tens;
-            
-            } 
-            if (tens > 99) {
-            console.log("seconds");
-            seconds++;
-            appendSeconds.innerHTML = "0" + seconds;
-            tens = 0;
-            appendTens.innerHTML = "0" + 0;
-            }
-            if (seconds > 9){
-            appendSeconds.innerHTML = seconds;
-            }
-        }
-    }
+
+  let milisegundos = 0;
+  let segundos = 0;
+  let intervalo;
+
+  function iniciar() {
+    intervalo = setInterval(() => {
+      milisegundos++;
+
+      if (milisegundos >= 100) {
+        milisegundos = 0;
+        segundos++;
+      }
+    }, 10);
+  }
+
+  function parar() {
+    clearInterval(intervalo);
+  }
+
+  function reiniciar() {
+    segundos = 0;
+    milisegundos = 0;
+  }
 </script>
 
+<main class="cronometro">
+  <p id="timer">
+    <span>{String(segundos).padStart(2, "0")}</span>:<span>{String(milisegundos).padStart(2, "0")}</span>
+  </p>
+  <button on:click={iniciar}>Iniciar</button>
+  <button on:click={parar}>Parar</button>
+  <button on:click={reiniciar}>Reiniciar</button>
+</main>
+
 <style>
-    /* Nao estilizado */
+  .cronometro {
+    text-align: center;
+  }
+  button {
+    background-color: lightgrey;
+    width: 20%;
+    font-size: 20px;
+  }
+  button:hover {
+    color: white;
+    background-color: #292929;
+    cursor: pointer;
+  }
+  #timer {
+    width: 50%;
+    font-size: 30px;
+    padding: 2%;
+    background-color: lightgray;
+    margin: 5% auto;
+  }
+  button,
+  #timer {
+    border-radius: 3px;
+  }
 </style>

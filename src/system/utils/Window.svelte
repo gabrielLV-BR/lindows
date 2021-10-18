@@ -5,6 +5,8 @@
     export let id;
     export let App;
 
+    let maximizada = false;
+
     // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
     // o que facilita a comunicação entre componentes
     const dispatch = createEventDispatcher();
@@ -27,9 +29,25 @@
         dispatch('message', { action: 'minimize', id });
     }
 
+    let boundingBoxAnterior = null;
+
     const maximizar = () => {
-        // Fazer algo aqui lol
-        return
+        if(maximizada) {
+            // Remover o "style" efetivamente reseta as mudanças feitas por código
+            janela.style.left   = `${boundingBoxAnterior.x}px`;
+            janela.style.top    = `${boundingBoxAnterior.y}px`;
+            janela.style.width  = `${boundingBoxAnterior.width}px`;
+            janela.style.height = `${boundingBoxAnterior.height}px`;
+        } else {
+            // O boundingBox é um objeto com dados sobre tamanho e posição do elemento
+            boundingBoxAnterior = janela.getBoundingClientRect();
+
+            janela.style.left = "0px";
+            janela.style.top = "0px";
+            janela.style.width = "100vw";
+            janela.style.height = "100vh";
+        }
+        maximizada = !maximizada;
     }
 
     // Movimentação da janela
@@ -62,7 +80,7 @@
     }
 </script>
 
-<div class="janela" on:click={focar} bind:this={janela} on:resize={handleResize} >
+<div class="janela" on:click={focar} on:dblclick={maximizar} bind:this={janela} on:resize={handleResize} >
     <header on:mousedown={mouseDown} on:mouseup={mouseUp}>
         <!-- Ícone -->
         <span>A</span>
@@ -89,7 +107,9 @@
         width: 500px;
         height: 500px;
 
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        transition: left 10ms, top 10ms, width 100ms, height 100ms;
+
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 
         resize: both;
 
@@ -98,6 +118,7 @@
         $border: 10px;
         
         border-radius: $border;
+
         header {
             border-radius: $border $border 0 0;
             height: 2rem;
@@ -108,7 +129,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 5px;
+            background: #242424;
 
+            cursor: grab;
+            
             span > button {
                 cursor: pointer;
 
@@ -126,9 +150,6 @@
                 background-color: #454545;
                 color: #fff;
             }
-
-            cursor: move;
-            background: #242424;
         }
 
         main {
@@ -142,6 +163,5 @@
                 user-select: none;
             }
         }
-
     }
 </style>
