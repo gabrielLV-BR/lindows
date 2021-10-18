@@ -2,7 +2,6 @@
   import { v1 as uuid } from "uuid";
 
   import Window from "./utils/Window.svelte";
-  import Cronometro from "../apps/Cronometro.svelte";
   import Icon from "./utils/Icon.svelte";
   //
   import Programas, { findProgram } from "../Apps";
@@ -18,7 +17,12 @@
     // Executa o aplicatico cujo ID == id
     aplicativosAbertos = [
       ...aplicativosAbertos,
-      { ...findProgram(id), id: `${id}-${uuid()}` },
+      {
+        ...findProgram(id),
+        id: `${id}-${uuid()}`,
+        minimized: false,
+        focused: false,
+      },
     ];
   };
 
@@ -40,6 +44,14 @@
           break;
         case "minimize":
           toggleMinimize();
+          break;
+        case "focus":
+          aplicativosAbertos = aplicativosAbertos.map((app) => {
+            if (app.id === aplicativo.id) {
+              return { ...app, focused: true };
+            }
+            return { ...app, focused: false };
+          });
       }
     }
   };
@@ -62,6 +74,7 @@
   <main class="área-de-trabalho">
     {#each iconesDoDesktop as icone}
       <Icon
+        desktop
         name={icone.name}
         image={icone.image}
         onDoubleClick={() => launch(icone.id)}
@@ -74,6 +87,7 @@
           on:message={handleMessage}
           title={app.nome}
           id={app.id}
+          focused={app.focused}
         />
       {/if}
     {/each}
@@ -87,7 +101,7 @@
       <span class="aplicativos-abertos">
         {#each aplicativosAbertos as app (app.id)}
           <Icon
-            small={true}
+            taskbar={true}
             name={app.name}
             image={app.image}
             onClick={() => toggleMinimize(app.id)}
@@ -114,13 +128,7 @@
   }
 
   .área-de-trabalho {
-    display: grid;
-
     padding: 1rem;
-    gap: 1rem;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-
     flex: 2;
   }
 
@@ -128,6 +136,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
+
+    z-index: 3;
 
     display: block;
     width: 100vw;

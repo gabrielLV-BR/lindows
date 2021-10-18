@@ -1,167 +1,178 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from "svelte";
 
-    export let título = "Janela";
-    export let id;
-    export let App;
+  export let título = "Janela";
+  export let id;
+  export let App;
+  export let focused;
 
-    let maximizada = false;
+  let maximizada = false;
 
-    // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
-    // o que facilita a comunicação entre componentes
-    const dispatch = createEventDispatcher();
+  // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
+  // o que facilita a comunicação entre componentes
+  const dispatch = createEventDispatcher();
 
-    let offsetX = 0, offsetY = 0;
+  let offsetX = 0,
+    offsetY = 0;
 
-    let janela = document.createElement('div');
+  let janela = document.createElement("div");
 
-    // Botões da janela
+  // Botões da janela
 
-    const focar = () => {
-        dispatch('message', { action: 'focus', id });
+  const focar = () => {
+    dispatch("message", { action: "focus", id });
+  };
+
+  const fechar = () => {
+    dispatch("message", { action: "close", id });
+  };
+
+  const minimizar = () => {
+    dispatch("message", { action: "minimize", id });
+  };
+
+  let boundingBoxAnterior = null;
+
+  const maximizar = () => {
+    if (maximizada) {
+      // Remover o "style" efetivamente reseta as mudanças feitas por código
+      janela.style.left = `${boundingBoxAnterior.x}px`;
+      janela.style.top = `${boundingBoxAnterior.y}px`;
+      janela.style.width = `${boundingBoxAnterior.width}px`;
+      janela.style.height = `${boundingBoxAnterior.height}px`;
+    } else {
+      // O boundingBox é um objeto com dados sobre tamanho e posição do elemento
+      boundingBoxAnterior = janela.getBoundingClientRect();
+
+      janela.style.left = "0px";
+      janela.style.top = "0px";
+      janela.style.width = "100vw";
+      janela.style.height = "100vh";
     }
+    maximizada = !maximizada;
+  };
 
-    const fechar = () => {
-        dispatch('message', { action: 'close', id });
-    }
+  // Movimentação da janela
 
-    const minimizar = () => {
-        dispatch('message', { action: 'minimize', id });
-    }
+  const mouseDown = (event) => {
+    window.addEventListener("mousemove", mouseMove);
 
-    let boundingBoxAnterior = null;
+    let boundingBox = janela.getBoundingClientRect();
 
-    const maximizar = () => {
-        if(maximizada) {
-            // Remover o "style" efetivamente reseta as mudanças feitas por código
-            janela.style.left   = `${boundingBoxAnterior.x}px`;
-            janela.style.top    = `${boundingBoxAnterior.y}px`;
-            janela.style.width  = `${boundingBoxAnterior.width}px`;
-            janela.style.height = `${boundingBoxAnterior.height}px`;
-        } else {
-            // O boundingBox é um objeto com dados sobre tamanho e posição do elemento
-            boundingBoxAnterior = janela.getBoundingClientRect();
+    offsetX = event.clientX - boundingBox.left;
+    offsetY = event.clientY - boundingBox.top;
+  };
 
-            janela.style.left = "0px";
-            janela.style.top = "0px";
-            janela.style.width = "100vw";
-            janela.style.height = "100vh";
-        }
-        maximizada = !maximizada;
-    }
+  const mouseUp = (event) => {
+    window.removeEventListener("mousemove", mouseMove);
+  };
 
-    // Movimentação da janela
+  const mouseMove = (event) => {
+    janela.style.left = `${event.clientX - offsetX}px`;
+    janela.style.top = `${event.clientY - offsetY}px`;
+  };
 
-    const mouseDown = (event) => {
-        window.addEventListener('mousemove', mouseMove);
+  // Etc.
 
-        let boundingBox = janela.getBoundingClientRect();
-
-        offsetX = event.clientX - boundingBox.left;
-        offsetY = event.clientY - boundingBox.top;
-
-        janela.style.zIndex = 2;
-    }   
-
-    const mouseUp = (event) => {
-        window.removeEventListener('mousemove', mouseMove);
-        janela.style.zIndex = 1;
-    }
-
-    const mouseMove = (event) => {
-        janela.style.left = `${event.clientX - offsetX}px`;
-        janela.style.top = `${event.clientY - offsetY}px`;
-    }
-
-    // Etc.
-
-    const handleResize = (event) => {
-        return;
-    }
+  const handleResize = (event) => {
+    return;
+  };
 </script>
 
-<div class="janela" on:click={focar} bind:this={janela} on:resize={handleResize} >
-    <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
-        <!-- Ícone -->
-        <span>A</span>
-        <!-- Título -->
-        <span>{título}</span>
-        <!-- Botões de ação -->
-        <span>
-            <button on:click={minimizar}>_</button>
-            <button on:click={maximizar}>[⠀]</button>
-            <button on:click={fechar}>X</button>
-        </span>
-    </header>
-    <main>
-        <svelte:component this={App} />
-    </main>
+<div
+  class="janela"
+  class:focused
+  on:mousedown={focar}
+  bind:this={janela}
+  on:resize={handleResize}
+>
+  <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
+    <!-- Ícone -->
+    <span>A</span>
+    <!-- Título -->
+    <span>{título}</span>
+    <!-- Botões de ação -->
+    <span>
+      <button on:click={minimizar}>_</button>
+      <button on:click={maximizar}>[⠀]</button>
+      <button on:click={fechar}>X</button>
+    </span>
+  </header>
+  <main>
+    <svelte:component this={App} />
+  </main>
 </div>
 
 <style lang="scss">
-    .janela {
-        position: absolute;
-        left: 33%;
-        top: 33%;
 
-        width: 500px;
-        height: 500px;
+  .focused {
+    z-index: 2;
+  }
 
-        transition: left 10ms, top 10ms, width 100ms, height 100ms;
+  .janela {
+    position: absolute;
+    left: 33%;
+    top: 33%;
 
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    width: 500px;
+    height: 500px;
 
-        resize: both;
+    transition: left 10ms, top 10ms, width 100ms, height 100ms;
 
-        background: #545454;
-        
-        $border: 10px;
-        
-        border-radius: $border;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 
-        header {
-            border-radius: $border $border 0 0;
-            height: 2rem;
-            user-select: none;
+    resize: both;
 
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5px;
-            background: #242424;
+    background: #545454;
 
-            cursor: grab;
-            
-            span > button {
-                cursor: pointer;
+    $border: 10px;
 
-                border: none;
-                display: inline-block;
+    border-radius: $border;
 
-                width: 1.5rem;
-                height: 1.5rem;
+    header {
+      border-radius: $border $border 0 0;
+      height: 2rem;
+      user-select: none;
 
-                margin: 0;
-                padding: 0;
-            }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5px;
+      background: #242424;
 
-            span > button:hover {
-                background-color: #454545;
-                color: #fff;
-            }
-        }
+      cursor: grab;
 
-        main {
-            width: 100%;
-            height: calc(100% - 2rem);
-            overflow: auto;
+      span > button {
+        cursor: pointer;
 
-            border-radius: 0 0 $border $border;
+        border: none;
+        display: inline-block;
 
-            &, * {
-                user-select: none;
-            }
-        }
+        width: 1.5rem;
+        height: 1.5rem;
+
+        margin: 0;
+        padding: 0;
+      }
+
+      span > button:hover {
+        background-color: #454545;
+        color: #fff;
+      }
     }
+
+    main {
+      width: 100%;
+      height: calc(100% - 2rem);
+      overflow: auto;
+
+      border-radius: 0 0 $border $border;
+
+      &,
+      * {
+        user-select: none;
+      }
+    }
+  }
 </style>
