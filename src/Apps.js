@@ -1,5 +1,6 @@
 import _Chrome from "./apps/Programa.svelte";
-import _Cronometro from "./apps/Cronometro.svelte"
+import _Cronometro from "./apps/Cronometro.svelte";
+import _Calculadora from "./apps/Calculadora.svelte";
 
 const Chrome = {
     name: "Chrome",
@@ -9,15 +10,23 @@ const Chrome = {
 }
 
 const Cronometro = {
-    name: "Cronometro",
+    name: "Cronômetro",
     id: "cronometro",
     image: "../res/icons/cronometro.png",
     app: _Cronometro
 }
 
+const Calculadora = {
+    name: "Calculadora",
+    id: "calculadora",
+    image:"../res/icons/calculadora.png",
+    app: _Calculadora
+}
+
 const Programas = [
     Chrome,
-    Cronometro
+    Cronometro,
+    Calculadora 
 ]
 
 export default Programas;

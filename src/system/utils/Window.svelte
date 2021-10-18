@@ -80,8 +80,8 @@
     }
 </script>
 
-<div class="janela" on:click={focar} on:dblclick={maximizar} bind:this={janela} on:resize={handleResize} >
-    <header on:mousedown={mouseDown} on:mouseup={mouseUp}>
+<div class="janela" on:click={focar} bind:this={janela} on:resize={handleResize} >
+    <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
         <!-- Ícone -->
         <span>A</span>
         <!-- Título -->

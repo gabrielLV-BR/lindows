@@ -1,8 +1,7 @@
 <script>
-  import {v1 as uuid} from "uuid";
+  import { v1 as uuid } from "uuid";
 
   import Window from "./utils/Window.svelte";
-  import Desktop from "./Desktop.svelte";
   import Cronometro from "../apps/Cronometro.svelte";
   import Icon from "./utils/Icon.svelte";
   //
@@ -17,8 +16,10 @@
 
   const launch = (id) => {
     // Executa o aplicatico cujo ID == id
-    aplicativosAbertos = [...aplicativosAbertos, {...findProgram(id), id: `${id}-${uuid()}`}];
-    console.log(aplicativosAbertos)
+    aplicativosAbertos = [
+      ...aplicativosAbertos,
+      { ...findProgram(id), id: `${id}-${uuid()}` },
+    ];
   };
 
   const handleClickStart = () => {
@@ -34,14 +35,11 @@
       switch (message.detail.action) {
         case "close":
           aplicativosAbertos = aplicativosAbertos.filter(
-            (app) => app !== aplicativo
+            (app) => app.id !== aplicativo.id
           );
+          break;
         case "minimize":
-          aplicativo.minimized = true;
-          aplicativosAbertos = [
-            ...aplicativosAbertos.filter((app) => app.id !== aplicativo.id),
-            aplicativo,
-          ];
+          toggleMinimize();
       }
     }
   };
@@ -50,11 +48,12 @@
     const aplicativo = aplicativosAbertos.find((app) => app.id === id);
 
     if (aplicativo) {
-      aplicativo.minimized = !aplicativo.minimized;
-      aplicativosAbertos = [
-        ...aplicativosAbertos.filter((app) => app.id !== aplicativo.id),
-        aplicativo,
-      ];
+      aplicativosAbertos = aplicativosAbertos.map((app) => {
+        if (app.id === aplicativo.id) {
+          return { ...app, minimized: !app.minimized };
+        }
+        return app;
+      });
     }
   };
 </script>
@@ -68,7 +67,7 @@
         onDoubleClick={() => launch(icone.id)}
       />
     {/each}
-    {#each aplicativosAbertos as app}
+    {#each aplicativosAbertos as app (app.id)}
       {#if !app.minimized}
         <Window
           App={app.app}
@@ -86,12 +85,13 @@
         <img src="res/images/logo.png" alt="Botão do início" />
       </button>
       <span class="aplicativos-abertos">
-        {#each aplicativosAbertos as app}
-        <Icon
-        name={app.name}
-        image={app.image}
-        onClick={() => toggleMinimize(app.id)}
-        />
+        {#each aplicativosAbertos as app (app.id)}
+          <Icon
+            small={true}
+            name={app.name}
+            image={app.image}
+            onClick={() => toggleMinimize(app.id)}
+          />
         {/each}
       </span>
       <span />
@@ -99,7 +99,7 @@
   </footer>
 </div>
 
-<style scoped lang="scss">
+<style lang="scss">
   .tela {
     display: flex;
     flex-direction: column;
@@ -125,38 +125,62 @@
   }
 
   .barra-de-tarefas {
-    &,
-    & > span {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+    width: 100vw;
+
+    &:hover > div {
+      transform: translateY(-9px);
+      transition: transform 100ms ease-out;
     }
 
-    justify-content: space-between;
+    & > div {
+      &,
+      .aplicativos-abertos {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-    background-color: rgb(20, 20, 20);
-    height: 2.5rem;
-
-    z-index: 3;
-
-    background-color: #223629;
-    opacity: 0.9;
-
-    box-shadow: 0 0 2px white inset;
-
-    .início {
-      height: 2.5rem;
-      width: 2.5rem;
-      background: none;
-
-      margin: 0 0.5rem 0 0.2rem;
-
-      &:hover {
-        filter: brightness(1.2);
+        gap: 1rem;
       }
 
-      img {
-        width: 100%;
+      display: block;
+      margin: 0 auto;
+
+      transform: translateY(100%);
+      transition: transform 200ms ease-out;
+
+      justify-content: space-between;
+
+      background-color: rgb(20, 20, 20);
+      height: 2.5rem;
+      width: 80%;
+      border-radius: 5px;
+
+      z-index: 3;
+
+      background-color: #223629;
+      opacity: 0.9;
+
+      box-shadow: 0 0 2px white inset;
+
+      .início {
+        height: 2.5rem;
+        width: 2.5rem;
+        background: none;
+
+        margin: 0 0.5rem 0 0.2rem;
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+
+        & > img {
+          width: 100%;
+        }
       }
     }
   }
