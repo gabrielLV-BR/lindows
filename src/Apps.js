@@ -10,7 +10,7 @@ const Chrome = {
 }
 
 const Cronometro = {
-    name: "Cronômetro",
+    name: "Timer",
     id: "cronometro",
     image: "../res/icons/cronometro.png",
     app: _Cronometro

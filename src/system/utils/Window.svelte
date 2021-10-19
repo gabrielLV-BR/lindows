@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  export let título = "Janela";
+  export let titulo;
   export let id;
   export let App;
   export let focused;
@@ -90,7 +90,7 @@
     <!-- Ícone -->
     <span>A</span>
     <!-- Título -->
-    <span>{título}</span>
+    <span>{titulo}</span>
     <!-- Botões de ação -->
     <span>
       <button on:click={minimizar}>_</button>
@@ -117,7 +117,7 @@
     width: 500px;
     height: 500px;
 
-    transition: left 10ms, top 10ms, width 100ms, height 100ms;
+    transition: width 100ms, height 100ms;
 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 
@@ -143,6 +143,10 @@
 
       cursor: grab;
 
+      span {
+        color: white;
+      }
+
       span > button {
         cursor: pointer;
 
@@ -154,6 +158,12 @@
 
         margin: 0;
         padding: 0;
+
+        // Só por enquanto
+        background: none;
+        border: 1px solid rgba(200, 200, 200, 0.1);
+        color: white;
+        font-weight: bold;
       }
 
       span > button:hover {

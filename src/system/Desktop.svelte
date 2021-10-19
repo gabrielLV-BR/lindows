@@ -31,19 +31,25 @@
   };
 
   const handleMessage = (message) => {
+    console.log(message);
+
     const aplicativo = aplicativosAbertos.find(
       (app) => app.id === message.detail.id
     );
 
     if (aplicativo != -1) {
+
+      // O "minimize" é tratado fora pois se não iríamos iterar duas vezes pelo aplicativosAbertos
+      if(message.detail.action === "minimize") {
+        toggleMinimize(aplicativo.id);
+        return;
+      }
+
       switch (message.detail.action) {
         case "close":
           aplicativosAbertos = aplicativosAbertos.filter(
             (app) => app.id !== aplicativo.id
           );
-          break;
-        case "minimize":
-          toggleMinimize();
           break;
         case "focus":
           aplicativosAbertos = aplicativosAbertos.map((app) => {
@@ -57,17 +63,14 @@
   };
 
   const toggleMinimize = (id) => {
-    const aplicativo = aplicativosAbertos.find((app) => app.id === id);
-
-    if (aplicativo) {
-      aplicativosAbertos = aplicativosAbertos.map((app) => {
-        if (app.id === aplicativo.id) {
+    aplicativosAbertos = aplicativosAbertos.map((app) => {
+        if (app.id === id) {
           return { ...app, minimized: !app.minimized };
         }
         return app;
       });
-    }
-  };
+  }
+
 </script>
 
 <div class="tela">
@@ -85,7 +88,7 @@
         <Window
           App={app.app}
           on:message={handleMessage}
-          title={app.nome}
+          titulo={app.name}
           id={app.id}
           focused={app.focused}
         />
@@ -96,7 +99,7 @@
   <footer class="barra-de-tarefas">
     <div>
       <button class="início" on:click={handleClickStart}>
-        <img src="res/images/logo.png" alt="Botão do início" />
+        <img src="res/images/logo3.png" alt="Botão do início" />
       </button>
       <span class="aplicativos-abertos">
         {#each aplicativosAbertos as app (app.id)}
@@ -122,7 +125,7 @@
     height: 100vh;
     margin: 0;
 
-    background-image: url(../res/images/wallpaper.jpg);
+    background-image: url('../res/images/wallpaper2.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -166,14 +169,14 @@
       justify-content: space-between;
 
       background-color: rgb(20, 20, 20);
-      height: 2.5rem;
+      height: 3.5rem;
       width: 80%;
-      border-radius: 5px;
+      border-radius: 7px;
 
       z-index: 3;
 
-      background-color: #223629;
-      opacity: 0.9;
+      background-color: #d9d9d9;
+      opacity: 0.7;
 
       box-shadow: 0 0 2px white inset;
 

@@ -34,13 +34,19 @@
   }
 
   .icon.taskbar {
-    width: 2rem;
-    height: 2rem;
+    width : 3rem;
+    height: 3rem;
 
     filter: saturate(0) invert(1);
   }
 
   .icon {
+    img {
+      background-color: #d9d9d9;
+      padding: 10px;
+      border-radius: 20px;
+    }
+    
     cursor: pointer;
     user-select: none;
     text-align: center;
@@ -51,11 +57,15 @@
     p {
       margin: 0.2rem;
       word-wrap: break-word;
+      color: white;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     }
 
     &:hover {
       filter: brightness(1.1);
+      font-weight: bold;
+      transition: 0.1s;
     }
+    transition: 0.1s;
   }
 </style>
