@@ -100,7 +100,7 @@
   <footer class="barra-de-tarefas">
     <div>
       <button class="início" on:click={handleClickStart}>
-        <img src="res/images/logo3.png" alt="Botão do início" />
+        <img src="res/images/logo2.png" alt="Botão do início" />
       </button>
       <span class="aplicativos-abertos">
         {#each aplicativosAbertos as app (app.id)}
@@ -147,7 +147,7 @@
     width: 100vw;
 
     &:hover > div {
-      transform: translateY(-9px);
+      transform: translateY(-15px);
       transition: transform 100ms ease-out;
     }
 
@@ -182,8 +182,8 @@
       box-shadow: 0 0 2px white inset;
 
       .início {
-        height: 2.5rem;
-        width: 2.5rem;
+        height: 2.8rem;
+        width: 2.8rem;
         background: none;
 
         margin: 0 0.5rem 0 0.2rem;
@@ -191,7 +191,6 @@
         
 
         &:hover {
-          filter: brightness(1.3);
           transform: rotate(360deg);
           transition: 0.4s;
         }

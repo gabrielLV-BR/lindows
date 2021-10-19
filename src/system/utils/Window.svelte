@@ -169,8 +169,7 @@
         padding: 0;
 
         // Só por enquanto
-        background: none;
-        border: 1px solid #393939;
+        background: #444444;
         color: white;
       }
 
