@@ -187,10 +187,14 @@
 
         margin: 0 0.5rem 0 0.2rem;
 
-        &:hover {
-          filter: brightness(1.2);
-        }
+        
 
+        &:hover {
+          filter: brightness(1.3);
+          transform: rotate(360deg);
+          transition: 0.4s;
+        }
+        transition: 0.4s;
         & > img {
           width: 100%;
         }

@@ -161,9 +161,8 @@
 
         // Só por enquanto
         background: none;
-        border: 1px solid rgba(200, 200, 200, 0.1);
+        border: 1px solid #393939;
         color: white;
-        font-weight: bold;
       }
 
       span > button:hover {
