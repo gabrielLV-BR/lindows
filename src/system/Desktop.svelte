@@ -84,15 +84,16 @@
       />
     {/each}
     {#each aplicativosAbertos as app (app.id)}
-      {#if !app.minimized}
-        <Window
-          App={app.app}
-          on:message={handleMessage}
-          titulo={app.name}
-          id={app.id}
-          focused={app.focused}
-        />
-      {/if}
+      <Window
+        on:message={handleMessage}
+        App={app.app}
+
+        titulo={app.name}
+        id={app.id}
+
+        minimized={app.minimized}
+        focused={app.focused}
+      />
     {/each}
   </main>
   <!-- Esse footer atua como um 'wrapper' -->

@@ -6,7 +6,7 @@
         <input type="text" placeholder="Digite sua tarefa" bind:value={texto} on:keydown={evento => {if(evento.key == "Enter") adicionar()}}> <button class="adicionar" on:click={adicionar}>Add</button>
     </div>
     <ul>
-        {#each tarefas as tarefa}
+        {#each tarefas as tarefa (tarefa)}
             <li>
                 <input type="checkbox">
                 <span>{tarefa}</span>

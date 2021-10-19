@@ -4,7 +4,9 @@
   export let titulo;
   export let id;
   export let App;
-  export let focused;
+
+  export let focused = false;
+  export let minimized = false;
 
   let maximizada = false;
 
@@ -81,9 +83,12 @@
 
 <div
   class="janela"
+
   class:focused
-  on:mousedown={focar}
+  class:minimized
+  
   bind:this={janela}
+  on:mousedown={focar}
   on:resize={handleResize}
 >
   <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
@@ -104,6 +109,10 @@
 </div>
 
 <style lang="scss">
+
+  .minimized {
+    display: none;
+  }
 
   .focused {
     z-index: 2;
