@@ -1,10 +1,32 @@
 <script>
+  // Horario e dia da semana
+  var hoje = new Date
+  var hora = hoje.getHours()
+  var minuto = hoje.getMinutes()
+          
+  var minutoTexto = `${minuto}`
+  if(minuto < 10) {
+      minutoTexto = "0" + minutoTexto
+  }
+  var dias = new Array(
+    "Domingo", 
+    "Segunda-Feira", 
+    "Terça-Feira", 
+    "Quarta-Feira", 
+    "Quinta-Feira", 
+    "Sexta-Feira", 
+    "Sábado"
+    )
+
+  $: dateText = `${dias[hoje.getDay()]} | ${hora}:${minutoTexto}`
+
   import { v1 as uuid } from "uuid";
 
   import Window from "./utils/Window.svelte";
   import Icon from "./utils/Icon.svelte";
   //
   import Programas, { findProgram } from "../Apps";
+  import { get } from "svelte/store";
   //
 
   let aplicativosAbertos = [];
@@ -112,7 +134,9 @@
           />
         {/each}
       </span>
-      <span />
+      <span>
+        <p class="hora" id="hora">{dateText}</p>
+      </span>
     </div>
   </footer>
 </div>
@@ -135,7 +159,10 @@
     padding: 1rem;
     flex: 2;
   }
-
+  .hora {
+      font-weight: bold;
+      margin-right: 10px;
+  }
   .barra-de-tarefas {
     position: absolute;
     bottom: 0;
@@ -145,6 +172,8 @@
 
     display: block;
     width: 100vw;
+
+    
 
     &:hover > div {
       transform: translateY(-15px);

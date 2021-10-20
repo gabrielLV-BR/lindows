@@ -2,6 +2,7 @@ import _Chrome from "./apps/Programa.svelte";
 import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";
 import _Lista from "./apps/Lista.svelte";
+import _Dinogame from "./apps/Dinogame.svelte";
 
 const Chrome = {
     name: "Chrome",
@@ -31,11 +32,19 @@ const Lista = {
     app: _Lista
 }
 
+const Dinogame = {
+    name: "Dino Game (Beta)",
+    id: "dinogame",
+    image:"../res/icons/dino.png",
+    app: _Dinogame
+}
+
 const Programas = [
     Chrome,
     Cronometro,
     Calculadora,
-    Lista 
+    Lista,
+    Dinogame 
 ]
 
 export default Programas;
