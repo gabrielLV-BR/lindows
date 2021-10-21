@@ -43,6 +43,7 @@
         margin: 1% auto;
         padding: 2%;
         background-color: #898989;
+        margin: 5px solid #191919;
         border-radius: 5px;
     }
     input:checked + span{

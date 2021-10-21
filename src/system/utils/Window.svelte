@@ -120,8 +120,8 @@
 
   .janela {
     position: absolute;
-    left: 33%;
-    top: 33%;
+    left: calc(50% - 250px);
+    top: calc(50% - 250px);
 
     width: 500px;
     height: 500px;

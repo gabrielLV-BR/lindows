@@ -173,8 +173,6 @@
     display: block;
     width: 100vw;
 
-    
-
     &:hover > div {
       transform: translateY(-15px);
       transition: transform 100ms ease-out;
@@ -188,6 +186,11 @@
         align-items: center;
 
         gap: 1rem;
+      }
+
+      .aplicativos-abertos {
+        max-width: 80%;
+        overflow: hidden;
       }
 
       display: block;
@@ -216,8 +219,6 @@
         background: none;
 
         margin: 0 0.5rem 0 0.2rem;
-
-        
 
         &:hover {
           transform: rotate(360deg);

@@ -2,7 +2,7 @@ import _Chrome from "./apps/Programa.svelte";
 import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";
 import _Lista from "./apps/Lista.svelte";
-import _Dinogame from "./apps/Dinogame.svelte";
+import _Dinogame from "./apps/jogos/Dinogame.svelte";
 
 const Chrome = {
     name: "Chrome",
