@@ -8,8 +8,8 @@
     <ul>
         {#each tarefas as tarefa (tarefa)}
             <li>
-                <input type="checkbox">
-                <span>{tarefa}</span>
+                <input id="{tarefa}" type="checkbox">
+                <label for="{tarefa}">{tarefa}</label>
                 <button class="remover" on:click={() => remover(tarefa) }>X</button>
             </li>
         {/each}
@@ -52,7 +52,20 @@
     li{
         list-style: none;
         overflow: hidden;
-        span{
+        width: 100%;
+
+        margin-top: 0.1rem;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        input, button.remover {
+            margin: 0;
+        }
+
+        label{
+            display: inline-block;
+            width: 100%;
             font-size: 30px;
         }
     } 

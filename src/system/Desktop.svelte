@@ -166,7 +166,7 @@
     bottom: 0;
     left: 0;
 
-    z-index: 3;
+    z-index: 15;
 
     display: block;
     width: 100vw;
@@ -204,7 +204,7 @@
       width: 80%;
       border-radius: 7px;
 
-      z-index: 3;
+      z-index: 15;
 
       background-color: #d9d9d9;
       opacity: 0.7;

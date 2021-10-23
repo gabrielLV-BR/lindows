@@ -36,6 +36,7 @@
 
 <style>
   .cronometro {
+    flex: 1;
     text-align: center;
   }
   button {

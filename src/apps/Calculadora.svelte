@@ -65,7 +65,7 @@
   }
   #resultado {
     text-align: right;
-    height: 12%;
+    min-height: 2.6rem;
     background-color: #fff;
     font-size: 30px;
     border-radius: 5px;

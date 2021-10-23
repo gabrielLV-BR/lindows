@@ -8,7 +8,7 @@
   export let focused = false;
   export let minimized = false;
 
-  let maximizada = false;
+  let maximized = false;
 
   // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
   // o que facilita a comunicação entre componentes
@@ -36,7 +36,7 @@
   let boundingBoxAnterior = null;
 
   const maximizar = () => {
-    if (maximizada) {
+    if (maximized) {
       // Remover o "style" efetivamente reseta as mudanças feitas por código
       janela.style.left = `${boundingBoxAnterior.x}px`;
       janela.style.top = `${boundingBoxAnterior.y}px`;
@@ -51,7 +51,7 @@
       janela.style.width = "100vw";
       janela.style.height = "100vh";
     }
-    maximizada = !maximizada;
+    maximized = !maximized;
   };
 
   // Movimentação da janela
@@ -104,18 +104,18 @@
     </span>
   </header>
   <main>
-    <svelte:component this={App} />
+    <svelte:component {maximized} this={App} />
   </main>
 </div>
 
-<style lang="scss">
+<style scoped lang="scss">
 
   .minimized {
     display: none;
   }
 
   .focused {
-    z-index: 2;
+    z-index: 10;
   }
 
   .janela {
@@ -180,9 +180,11 @@
     }
 
     main {
-      width: 100%;
-      height: calc(100% - 2rem);
+      min-width: 100%;
+      min-height: calc(100% - 2rem);
       overflow: auto;
+
+      display: flex;
 
       border-radius: 0 0 $border $border;
 
