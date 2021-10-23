@@ -53,8 +53,6 @@
   };
 
   const handleMessage = (message) => {
-    console.log(message);
-
     const aplicativo = aplicativosAbertos.find(
       (app) => app.id === message.detail.id
     );

@@ -5,8 +5,6 @@
   export let desktop;
   export let taskbar;
 
-  console.log(`desktop = ${desktop} \n taskbar = ${taskbar}`)
-
   export let onClick = () => null;
   export let onDoubleClick = () => null;
 </script>

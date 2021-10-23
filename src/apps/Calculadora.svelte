@@ -1,33 +1,29 @@
 <script>
+  let resultado = "";
+
   function insert(num) {
-    var numero = document.getElementById("resultado").innerHTML;
-    document.getElementById("resultado").innerHTML = numero + num;
+    resultado = `${resultado}${num}`
   }
 
   function clean() {
-    document.getElementById("resultado").innerHTML = "";
+    resultado = ""
   }
 
   function back() {
-    var resultado = document.getElementById("resultado").innerHTML;
-    document.getElementById("resultado").innerHTML = resultado.substring(
-      0,
-      resultado.length - 1
-    );
+    resultado = resultado.slice(0, resultado.length - 1)
   }
 
   function calcular() {
-    var resultado = document.getElementById("resultado").innerHTML;
     if (resultado) {
-      document.getElementById("resultado").innerHTML = eval(resultado);
+      resultado = eval(resultado)
     } else {
-      document.getElementById("resultado").innerHTML = "Nada...";
+      resultado = "Nada..."
     }
   }
 </script>
 
 <main class="calculadora">
-  <p id="resultado" />
+  <p id="resultado">{resultado}</p>
   <div class="botoes">
     <button on:click={clean}>C</button>
     <button on:click={back}>⬅</button>
