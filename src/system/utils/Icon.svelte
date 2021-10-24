@@ -1,9 +1,9 @@
 <script>
-  export let image;
-  export let name;
+  export let image = "../res/images/logo3.png";
+  export let name = "Prograna";
 
-  export let desktop;
-  export let taskbar;
+  export let desktop = false;
+  export let taskbar = false;
 
   export let onClick = () => null;
   export let onDoubleClick = () => null;

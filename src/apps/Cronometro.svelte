@@ -1,8 +1,7 @@
 <script>
-
   let milisegundos = 0;
   let segundos = 0;
-  let intervalo;
+  let intervalo = -1;
 
   function iniciar() {
     intervalo = setInterval(() => {
@@ -17,6 +16,7 @@
 
   function parar() {
     clearInterval(intervalo);
+    intervalo = -1;
   }
 
   function reiniciar() {
@@ -29,7 +29,7 @@
   <p id="timer">
     <span>{String(segundos).padStart(2, "0")}</span>:<span>{String(milisegundos).padStart(2, "0")}</span>
   </p>
-  <button on:click={iniciar}>Iniciar</button>
+  <button on:click={() => {if(intervalo === -1) iniciar() }}>Iniciar</button>
   <button on:click={parar}>Parar</button>
   <button on:click={reiniciar}>Reiniciar</button>
 </main>

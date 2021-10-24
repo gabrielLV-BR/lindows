@@ -1,40 +1,19 @@
 <script>
-  // Horario e dia da semana
-  var hoje = new Date
-  var hora = hoje.getHours()
-  var minuto = hoje.getMinutes()
-          
-  var minutoTexto = `${minuto}`
-  if(minuto < 10) {
-      minutoTexto = "0" + minutoTexto
-  }
-  var dias = new Array(
-    "Domingo", 
-    "Segunda-Feira", 
-    "Terça-Feira", 
-    "Quarta-Feira", 
-    "Quinta-Feira", 
-    "Sexta-Feira", 
-    "Sábado"
-    )
-
-  $: dateText = `${dias[hoje.getDay()]} | ${hora}:${minutoTexto}`
-
   import { v1 as uuid } from "uuid";
 
   import Window from "./utils/Window.svelte";
   import Icon from "./utils/Icon.svelte";
-  //
+  import StartMenu from "./StartMenu.svelte";
+  import Time from "./utils/Time.svelte";
+
   import Programas, { findProgram } from "../Apps";
-  import { get } from "svelte/store";
-  //
+
+  let menuInicialAberto = false;
 
   let aplicativosAbertos = [];
-
   let iconesDoDesktop = [...Programas];
 
   // Funções
-
   const launch = (id) => {
     // Executa o aplicatico cujo ID == id
     aplicativosAbertos = [
@@ -49,7 +28,7 @@
   };
 
   const handleClickStart = () => {
-    alert("Você clicou em mim");
+    menuInicialAberto = !menuInicialAberto;
   };
 
   const handleMessage = (message) => {
@@ -58,9 +37,8 @@
     );
 
     if (aplicativo != -1) {
-
       // O "minimize" é tratado fora pois se não iríamos iterar duas vezes pelo aplicativosAbertos
-      if(message.detail.action === "minimize") {
+      if (message.detail.action === "minimize") {
         toggleMinimize(aplicativo.id);
         return;
       }
@@ -84,13 +62,12 @@
 
   const toggleMinimize = (id) => {
     aplicativosAbertos = aplicativosAbertos.map((app) => {
-        if (app.id === id) {
-          return { ...app, minimized: !app.minimized };
-        }
-        return app;
-      });
-  }
-
+      if (app.id === id) {
+        return { ...app, minimized: !app.minimized };
+      }
+      return app;
+    });
+  };
 </script>
 
 <div class="tela">
@@ -107,18 +84,19 @@
       <Window
         on:message={handleMessage}
         App={app.app}
-
         titulo={app.name}
         id={app.id}
-
         minimized={app.minimized}
         focused={app.focused}
       />
     {/each}
   </main>
   <!-- Esse footer atua como um 'wrapper' -->
-  <footer class="barra-de-tarefas">
-    <div>
+  <footer class="barra-de-tarefas-wrapper">
+    <div class="barra-de-tarefas">
+      {#if menuInicialAberto}
+        <StartMenu apps={iconesDoDesktop} />
+      {/if}
       <button class="início" on:click={handleClickStart}>
         <img src="res/images/logo2.png" alt="Botão do início" />
       </button>
@@ -132,9 +110,7 @@
           />
         {/each}
       </span>
-      <span>
-        <p class="hora" id="hora">{dateText}</p>
-      </span>
+      <Time />
     </div>
   </footer>
 </div>
@@ -148,7 +124,7 @@
     height: 100vh;
     margin: 0;
 
-    background-image: url('../res/images/wallpaper2.jpg');
+    background-image: url("../res/images/wallpaper2.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -157,26 +133,20 @@
     padding: 1rem;
     flex: 2;
   }
-  .hora {
-      font-weight: bold;
-      margin-right: 10px;
-  }
-  .barra-de-tarefas {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+
+  .barra-de-tarefas-wrapper {
+    position: relative;
+    display: block;
 
     z-index: 15;
-
-    display: block;
     width: 100vw;
 
-    &:hover > div {
+    &:hover > .barra-de-tarefas {
       transform: translateY(-15px);
       transition: transform 100ms ease-out;
     }
 
-    & > div {
+    .barra-de-tarefas {
       &,
       .aplicativos-abertos {
         display: flex;
@@ -185,6 +155,8 @@
 
         gap: 1rem;
       }
+
+      padding: 0 1rem;
 
       .aplicativos-abertos {
         max-width: 80%;

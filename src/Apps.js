@@ -47,7 +47,14 @@ const Programas = [
     Dinogame 
 ]
 
-export default Programas;
+function sortByName(a, b) {
+    if(a.name < b.name) return -1;
+    else if(a.name > b.name) return 1;
+    return 0;
+}
+
+// Isso ajuda no StartMenu
+export default Programas.sort(sortByName);
 
 export const findProgram = (id = "") => {
     return Programas.find(el => el.id === id)
