@@ -1,6 +1,10 @@
 <script>
+  import { clickOutside } from "../modules/clickOutside";
+
   export let launch = (_) => null;
   export let apps = [];
+  export let handleClickOutside = (_) => null;
+
   $: partitionedApps = partitionApps(apps);
 
   let search = "";
@@ -28,28 +32,43 @@
   }
 </script>
 
-<main class="start-menu">
+<main use:clickOutside on:click_outside={handleClickOutside} class="start-menu">
   <div class="app-list">
-    <span>
+    {#if search === ""}
       {#each partitionedApps as appSection (appSection.letter)}
-        <input
-          style="display: none"
-          type="checkbox"
-          id="checkbox-{appSection.letter}"
-        />
-        <label for="checkbox-{appSection.letter}" class="partition">
-          {appSection.letter}
-        </label>
-        <section class="content">
-          {#each appSection.apps as app (app)}
-            <p on:click={() => launch(app.id)}>
-              {app.name}
-            </p>
-          {/each}
-        </section>
+        <span>
+          <input
+            style="display: none"
+            type="checkbox"
+            id="checkbox-{appSection.letter}"
+          />
+          <label for="checkbox-{appSection.letter}" class="partition">
+            {appSection.letter}
+          </label>
+          <section class="content">
+            {#each appSection.apps as app (app)}
+              <p on:click={() => launch(app.id)}>
+                <img src={app.image} alt="" />
+                {app.name}
+              </p>
+            {/each}
+          </section>
+        </span>
       {/each}
-    </span>
+    {:else}
+      <section>
+        {#each apps.filter((a) => a.name
+            .toLowerCase()
+            .startsWith(search.toLowerCase())) as app (app.id)}
+          <p on:click={() => launch(app.id)}>
+            <img src={app.image} alt="" />
+            {app.name}
+          </p>
+        {/each}
+      </section>
+    {/if}
   </div>
+
   <input
     class="app-search"
     bind:value={search}
@@ -58,28 +77,38 @@
   />
 </main>
 
-<style lang="scss">
+<style scoped lang="scss">
   .start-menu {
-    margin-bottom: 2rem;
-    position: absolute;
-    left: 1rem;
-    bottom: 3rem;
+    opacity: 0.9;
 
-    overflow: hidden;
+    position: fixed;
+    left: 0;
+    bottom: 4rem;
 
     background: #d6d6d6;
     color: black;
 
+    width: 17rem;
+
+    overflow: hidden;
     padding: 0px;
     border-radius: 0.4rem;
+  }
+
+  img {
+    margin: 0 0.8rem;
+    width: 1rem;
   }
 
   .app-search {
     width: 100%;
     margin: 0;
+    outline: none;
   }
 
   .app-list {
+    background: black;
+
     label {
       position: relative;
       width: 100%;
@@ -118,16 +147,20 @@
     }
 
     input[type="checkbox"]:checked ~ section {
-      max-height: 400px;
+      max-height: 200px;
       transition: max-height 200ms;
+    }
+
+    input[type="checkbox"] ~ section {
+      max-height: 0px;
     }
 
     section {
       background: #d6d6d6;
       height: 100%;
-      max-height: 0px;
       overflow: hidden;
       transition: max-height 200ms;
+
       p {
         margin: 0;
         padding: 0.2rem 0;

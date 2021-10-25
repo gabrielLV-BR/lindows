@@ -93,9 +93,9 @@
   </main>
   <!-- Esse footer atua como um 'wrapper' -->
   <footer class="barra-de-tarefas-wrapper">
-    <div class="barra-de-tarefas">
+    <div class="barra-de-tarefas" class:menuInicialAberto>
       {#if menuInicialAberto}
-        <StartMenu apps={iconesDoDesktop} />
+        <StartMenu handleClickOutside={() => menuInicialAberto = false} {launch} apps={iconesDoDesktop} />
       {/if}
       <button class="início" on:click={handleClickStart}>
         <img src="res/images/logo2.png" alt="Botão do início" />
@@ -141,7 +141,8 @@
     z-index: 15;
     width: 100vw;
 
-    &:hover > .barra-de-tarefas {
+    &:hover > .barra-de-tarefas,
+    .barra-de-tarefas.menuInicialAberto {
       transform: translateY(-15px);
       transition: transform 100ms ease-out;
     }
