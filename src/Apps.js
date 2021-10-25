@@ -33,7 +33,7 @@ const Lista = {
 }
 
 const Dinogame = {
-    name: "Dino Game (Beta)",
+    name: "Dino Game",
     id: "dinogame",
     image:"../res/icons/dino.png",
     app: _Dinogame

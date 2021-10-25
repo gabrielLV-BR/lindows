@@ -190,7 +190,7 @@
     // Para cada inimigo...
     obstacles.forEach((obstacle) => {
       // ...Adicione -5 ao seu X (movendo ele pra esquerda)
-      obstacle.x -= 5;
+      obstacle.x -= 5 *Number(!isNotRunning);
       // ...Verifique se o mesmo está colidindo e, se sim, mate o jogador
       if (isColliding(obstacle)) die();
     });
