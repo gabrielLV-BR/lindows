@@ -83,11 +83,7 @@
     {#each aplicativosAbertos as app (app.id)}
       <Window
         on:message={handleMessage}
-        App={app.app}
-        titulo={app.name}
-        id={app.id}
-        minimized={app.minimized}
-        focused={app.focused}
+        {...app}
       />
     {/each}
   </main>

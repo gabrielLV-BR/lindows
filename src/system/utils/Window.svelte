@@ -1,14 +1,15 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  export let titulo;
+  export let app;
   export let id;
-  export let App;
-
+  export let name;
+  export let image = "../res/images/logo3.png";
   export let focused = false;
   export let minimized = false;
 
   let maximized = false;
+  let closing = false;
 
   // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
   // o que facilita a comunicação entre componentes
@@ -26,7 +27,11 @@
   };
 
   const fechar = () => {
-    dispatch("message", { action: "close", id });
+    minimized = false;
+    closing = true;
+    setTimeout(() => {
+      dispatch("message", { action: "close", id });
+    }, 400);
   };
 
   const minimizar = () => {
@@ -83,19 +88,20 @@
 
 <div
   class="janela"
-
   class:focused
   class:minimized
-  
+  class:closing
   bind:this={janela}
   on:mousedown={focar}
   on:resize={handleResize}
 >
   <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
     <!-- Ícone -->
-    <span>A</span>
+    <span class="icon">
+      <img src={image} alt="Ícone" />
+    </span>
     <!-- Título -->
-    <span>{titulo}</span>
+    <span>{name}</span>
     <!-- Botões de ação -->
     <span>
       <button on:click={minimizar}>_</button>
@@ -104,29 +110,77 @@
     </span>
   </header>
   <main>
-    <svelte:component {maximized} this={App} />
+    <svelte:component this={app} {maximized} />
   </main>
 </div>
 
 <style scoped lang="scss">
+  @keyframes minimize {
+    to {
+      transform: translate3d(0, 100vh, 0) scale(0.2);
+    }
+  }
+
+  @keyframes showup {
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes closing {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    70% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0);
+    }
+  }
 
   .minimized {
-    display: none;
+    animation: minimize 200ms ease forwards !important;
+  }
+
+  .closing {
+    animation: closing 300ms cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards !important;
   }
 
   .focused {
     z-index: 10;
   }
 
+  .icon {
+    border-radius: 5px;
+    background: #dadada;
+    width:  1.3rem;
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
   .janela {
     position: absolute;
     left: calc(50% - 250px);
     top: calc(50% - 250px);
+    
+    // estou usando o translate3D porque li na internet que ele utiliza a placa de vídeo pra calcular,
+    // o que o torna mais rápido
+    transform: translate3d(0, 0, 0) scale(0.2);
 
     width: 500px;
     height: 500px;
-
+    
     transition: width 100ms, height 100ms;
+    animation: showup 200ms ease forwards;
 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 

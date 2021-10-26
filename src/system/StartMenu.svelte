@@ -70,6 +70,7 @@
   </div>
 
   <input
+    autofocus
     class="app-search"
     bind:value={search}
     type="text"
