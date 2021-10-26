@@ -1,18 +1,20 @@
 <script>
+  // Única variavel que é modificada
   let resultado = "";
 
+  // Insere novos caracteres
   function insert(num) {
     resultado = `${resultado}${num}`
   }
-
+  // Limpa a variável "resultado"
   function clean() {
     resultado = ""
   }
-
+  // Exclui o último caractere da variavel "resultado"
   function back() {
     resultado = resultado.slice(0, resultado.length - 1)
   }
-
+  // Calcula todos os caracteres incluidos na variavel "resultado"
   function calcular() {
     if (resultado) {
       resultado = eval(resultado)
@@ -54,13 +56,18 @@
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
   .calculadora {
-    width: 65%;
-    height: 80%;
+    min-width: 100%;
+    height: max-content;
+    margin: 0;
+    flex: 1;
     padding: 20px;
     padding-bottom: 40px;
     background-color: #292929;
     text-align: center;
-    margin: 3% auto;
+
+    align-self: center;
+    justify-self: center;
+    
     border-radius: 5px;
   }
   #resultado {

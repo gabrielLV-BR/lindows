@@ -17,11 +17,14 @@
 </main>
 
 <script>
+    // Define as variaveis
     let tarefas = []
     let texto = ""
     let invalido = false
 
+    // Adiociona itens 
     function adicionar(){
+        // Testa o input para não adicionar itens inválidos
         if(texto != "" && !tarefas.includes(texto)){
             tarefas = [...tarefas,texto]
             texto = ""
@@ -32,6 +35,7 @@
         }
     }
 
+    // Remove itens da lista
     function remover(_texto1){
         tarefas = tarefas.filter((_texto2) => _texto2 != _texto1)
     }

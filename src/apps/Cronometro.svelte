@@ -1,8 +1,9 @@
 <script>
+  // Define variáveis
   let milisegundos = 0;
   let segundos = 0;
   let intervalo = -1;
-
+  // Inicia e 'despausa' o tempo
   function iniciar() {
     intervalo = setInterval(() => {
       milisegundos++;
@@ -13,12 +14,12 @@
       }
     }, 10);
   }
-
+  // Para o tempo
   function parar() {
     clearInterval(intervalo);
     intervalo = -1;
   }
-
+  // Reinicia o tempo
   function reiniciar() {
     segundos = 0;
     milisegundos = 0;
