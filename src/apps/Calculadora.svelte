@@ -62,7 +62,7 @@
     flex: 1;
     padding: 20px;
     padding-bottom: 40px;
-    background-color: #292929;
+    background-color: var(--background-0);
     text-align: center;
 
     align-self: center;
@@ -72,16 +72,16 @@
   }
   #resultado {
     text-align: right;
-    min-height: 2.6rem;
-    background-color: #fff;
+    min-height: 3rem;
+    color: var(--font-color-1);
     font-size: 30px;
     border-radius: 5px;
     padding: 4px;
     outline: hidden;
   }
   button {
-    color: #191919;
-    background-color: #898989;
+    color: var(--background-0-inverse);
+    background: none;
     padding: 1rem;
     margin: 0.1rem;
     font-size: 25px;

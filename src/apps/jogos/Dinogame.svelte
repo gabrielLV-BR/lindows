@@ -377,8 +377,8 @@
     border-radius: 0.4rem;
 
     text-align: center;
-    background: #343434;
-    color: #f5f5f5;
+    background: var(--background-1);
+    color: var(--font-color-1);
   }
 
   .instructionsHidden {

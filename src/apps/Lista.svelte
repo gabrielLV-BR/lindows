@@ -44,13 +44,14 @@
 <style lang="scss">
     .lista{
         width: 80%;
+        height: fit-content;
         margin: 1% auto;
+
         padding: 2%;
-        background-color: #898989;
-        margin: 5px solid #191919;
+        background-color: var(--background-2);
         border-radius: 5px;
     }
-    input:checked + span{
+    input:checked + label{
         text-decoration: line-through;
     }
     li{
@@ -75,7 +76,8 @@
     } 
     input[type="text"]{
         width: 70%;
-        background-color: #d9d9d9;
+        border-color: var(--background-2);
+        background-color: var(--background-1);
         border-radius: 8px;
         outline: none;
     }
@@ -83,12 +85,12 @@
         width: 20%;
         cursor: pointer;
         overflow: hidden;
-        background-color: #393939;
-        color: white;
+        background-color: var(--background-2);
+        color: var(--font-color-1);
         border-radius: 8px;
     }
     .adicionar:hover {
-        background-color: #191919;
+        background-color: var(--background-1);
     }
     .menu{
         text-align: center;
@@ -104,17 +106,17 @@
     }
     .remover {
         font-weight: bold;
-        color: red;
+        color: var(--error);
         width: 35px;
         height: 35px;
         border-radius: 8px;
     }
     .remover:hover {
         color: white;
-        background-color: red;
+        background-color: var(--error);
     }
     .erro{
-        color: red;
+        color: var(--error);
         font-weight: bold;
         background-color: white;
         padding: 5px;

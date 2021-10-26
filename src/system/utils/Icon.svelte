@@ -40,7 +40,7 @@
 
   .icon {
     img {
-      background-color: #d9d9d9;
+      background-color: var(--background-1);
       padding: 10px;
       border-radius: 20px;
     }
@@ -55,7 +55,8 @@
     p {
       margin: 0.2rem;
       word-wrap: break-word;
-      color: white;
+      // Nesse caso, usar as variáveis não fica bom
+      color: #dadada;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     }
 

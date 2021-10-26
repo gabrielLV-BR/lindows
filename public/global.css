@@ -1,3 +1,35 @@
+.light {
+	--background-0: #ffffff;
+	--background-1: #dadada;
+	--background-2: #bebebe;
+
+	--font-color-0: #000000;
+	--font-color-1: #101010;
+	--font-color-2: #272727;
+
+	--background-0-inverse: var(--font-color-0);
+	--background-1-inverse: var(--font-color-1);
+	--background-2-inverse: var(--font-color-2);
+
+	--error: #bb0011;
+}
+
+.dark {
+	--background-0: #141414;
+	--background-1: #242424;
+	--background-2: #343434;
+
+	--font-color-0: #ffffff;
+	--font-color-1: #dadada;
+	--font-color-2: #bebebe;
+
+	--background-0-inverse: var(--font-color-0);
+	--background-1-inverse: var(--font-color-1);
+	--background-2-inverse: var(--font-color-2);
+
+	--error: #880011;
+}
+
 html, body {
 	position: relative;
 	width: 100vw;
@@ -14,6 +46,7 @@ body {
 
 * {
 	box-sizing: border-box;
+	color: var(--font-color-1);
 }
 
 a {

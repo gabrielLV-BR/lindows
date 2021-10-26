@@ -168,17 +168,16 @@
 
       justify-content: space-between;
 
-      background-color: rgb(20, 20, 20);
       height: 3.5rem;
       width: 80%;
       border-radius: 7px;
 
       z-index: 15;
 
-      background-color: #d9d9d9;
+      background-color: var(--background-1);
       opacity: 0.7;
 
-      box-shadow: 0 0 2px white inset;
+      box-shadow: 0 0 2px var(--background-0) inset;
 
       .início {
         height: 2.8rem;

@@ -44,6 +44,7 @@
           />
           <label for="checkbox-{appSection.letter}" class="partition">
             {appSection.letter}
+            <img src="../res/images/arrow.svg" alt="" class="after">
           </label>
           <section class="content">
             {#each appSection.apps as app (app)}
@@ -86,7 +87,7 @@
     left: 0;
     bottom: 4rem;
 
-    background: #d6d6d6;
+    background: var(--background-1);
     color: black;
 
     width: 17rem;
@@ -105,6 +106,11 @@
     width: 100%;
     margin: 0;
     outline: none;
+
+    border-width: 2px;
+    border-color: var(--background-1);
+    background-color: var(--background-0);
+    color: var(--font-color-1);
   }
 
   .app-list {
@@ -113,38 +119,28 @@
     label {
       position: relative;
       width: 100%;
-      background: #202020;
-      color: white;
+      background: var(--background-0);
+      color: var(--font-color-1);
 
       padding: 0.2rem;
       font-size: 1.5rem;
 
-      &:hover {
-        background: #303030;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .after {
+        transition: transform 200ms ease;
       }
 
-      &::after {
-        content: "";
-
-        position: absolute;
-        top: 50%;
-        right: 0.5rem;
-
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-
-        transform: translateY(-50%) rotate(00deg);
-
-        background-image: url(../res/images/arrow.svg);
-        background-repeat: no-repeat;
-
-        transition: transform 200ms ease;
+      &:hover {
+        filter: brightness(1.1);
       }
     }
 
-    input[type="checkbox"]:checked ~ label::after {
-      transform: translateY(-50%) rotate(180deg);
+    input[type="checkbox"]:checked ~ label > .after {
+      transform: rotate(180deg);
     }
 
     input[type="checkbox"]:checked ~ section {
@@ -157,19 +153,20 @@
     }
 
     section {
-      background: #d6d6d6;
+      background: var(--background-2);
       height: 100%;
       overflow: hidden;
       transition: max-height 200ms;
 
       p {
+        background: var(--background-2);
         margin: 0;
         padding: 0.2rem 0;
         user-select: none;
       }
 
       p:hover {
-        background: #b6b6b6;
+        filter: brightness(1.3);
       }
     }
   }

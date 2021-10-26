@@ -41,20 +41,21 @@
     text-align: center;
   }
   button {
-    background-color: lightgrey;
+    color: var(--font-color-1);
+    background-color: var(--background-2);
     width: 20%;
     font-size: 20px;
   }
   button:hover {
-    color: white;
-    background-color: #292929;
+    color: var(--font-color-1);
+    background-color: var(--background-1);
     cursor: pointer;
   }
   #timer {
     width: 50%;
     font-size: 30px;
     padding: 2%;
-    background-color: lightgray;
+    background-color: var(--background-2);
     margin: 5% auto;
   }
   button,

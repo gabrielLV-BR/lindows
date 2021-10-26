@@ -154,7 +154,8 @@
 
   .icon {
     border-radius: 5px;
-    background: #dadada;
+    background: var(--background-1);
+
     width:  1.3rem;
     height: 1.3rem;
     display: flex;
@@ -186,7 +187,7 @@
 
     resize: both;
 
-    background: #545454;
+    background: var(--background-0);
 
     $border: 10px;
 
@@ -202,12 +203,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 5px;
-      background: #242424;
+      background: var(--background-1);
 
       cursor: grab;
 
       span {
-        color: white;
+        color: var(--font-color-1);
       }
 
       span > button {
@@ -222,20 +223,18 @@
         margin: 0;
         padding: 0;
 
-        // Só por enquanto
-        background: #444444;
-        color: white;
+        background: var(--background-1);
+        color: var(--font-color-1);
       }
 
       span > button:hover {
-        background-color: #454545;
-        color: #fff;
+        filter: brightness(1.2);
       }
     }
 
     main {
-      min-width: 100%;
-      min-height: calc(100% - 2rem);
+      width: 100%;
+      height: calc(100% - 2rem);
       overflow: auto;
 
       display: flex;
