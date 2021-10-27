@@ -20,8 +20,8 @@
 
   .icon.desktop {
     margin: 1rem;
-    width:  6rem;
-    height: 6rem;
+    width:  7rem;
+    height: 7rem;
 
     img {
       display: inline-block;
@@ -53,7 +53,7 @@
     flex-direction: column;
 
     p {
-      margin: 0.2rem;
+      margin: 0.2rem 0;
       word-wrap: break-word;
       // Nesse caso, usar as variáveis não fica bom
       color: #dadada;

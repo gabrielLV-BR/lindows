@@ -3,6 +3,7 @@ import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";
 import _Lista from "./apps/Lista.svelte";
 import _Dinogame from "./apps/jogos/Dinogame.svelte";
+import _Configuracoes from "./apps/Settings.svelte";
 
 const Chrome = {
     name: "Chrome",
@@ -39,12 +40,20 @@ const Dinogame = {
     app: _Dinogame
 }
 
+const Settings = {
+    name: "Configurações",
+    id: "config",
+    image:"../res/icons/settings.svg",
+    app: _Configuracoes
+}
+
 const Programas = [
     Chrome,
     Cronometro,
     Calculadora,
     Lista,
-    Dinogame 
+    Dinogame,
+    Settings
 ]
 
 function sortByName(a, b) {

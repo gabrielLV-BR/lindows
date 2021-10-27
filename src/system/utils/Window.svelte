@@ -104,9 +104,9 @@
     <span>{name}</span>
     <!-- Botões de ação -->
     <span>
-      <button on:click={minimizar}>_</button>
-      <button on:click={maximizar}>[⠀]</button>
-      <button on:click={fechar}>X</button>
+      <button class="btn-window" id="btn-min" on:click={minimizar} />
+      <button class="btn-window" id="btn-max" on:click={maximizar} />
+      <button class="btn-window" id="btn-cls" on:click={fechar} />
     </span>
   </header>
   <main>
@@ -145,7 +145,7 @@
   }
 
   .closing {
-    animation: closing 300ms cubic-bezier(0.25, 0.1, 0.25, 1.0) forwards !important;
+    animation: closing 300ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards !important;
   }
 
   .focused {
@@ -156,7 +156,7 @@
     border-radius: 5px;
     background: var(--background-1);
 
-    width:  1.3rem;
+    width: 1.3rem;
     height: 1.3rem;
     display: flex;
     align-items: center;
@@ -172,14 +172,14 @@
     position: absolute;
     left: calc(50% - 250px);
     top: calc(50% - 250px);
-    
+
     // estou usando o translate3D porque li na internet que ele utiliza a placa de vídeo pra calcular,
     // o que o torna mais rápido
     transform: translate3d(0, 0, 0) scale(0.2);
 
     width: 500px;
     height: 500px;
-    
+
     transition: width 100ms, height 100ms;
     animation: showup 200ms ease forwards;
 
@@ -205,20 +205,19 @@
       padding: 0 5px;
       background: var(--background-1);
 
-      cursor: grab;
-
       span {
         color: var(--font-color-1);
       }
 
-      span > button {
+      span > .btn-window {
         cursor: pointer;
 
-        border: none;
         display: inline-block;
 
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.3rem;
+        height: 1.3rem;
+
+        border-radius: 50%;
 
         margin: 0;
         padding: 0;
@@ -229,6 +228,18 @@
 
       span > button:hover {
         filter: brightness(1.2);
+      }
+      span > #btn-max {
+        background-color: #34c949;
+        border: 1px solid #219a30;
+      }
+      span > #btn-min {
+        background-color: #fcbf42;
+        border: 1px solid #df9a33;
+      }
+      span > #btn-cls {
+        background-color: #fb625d;
+        border: 1px solid #ea3641;
       }
     }
 
