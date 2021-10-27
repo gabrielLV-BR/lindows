@@ -141,7 +141,7 @@
   }
 
   .minimized {
-    animation: minimize 200ms ease forwards !important;
+    animation: minimize 400ms ease forwards !important;
   }
 
   .closing {
@@ -214,8 +214,8 @@
 
         display: inline-block;
 
-        width: 1.3rem;
-        height: 1.3rem;
+        width: 1rem;
+        height: 1rem;
 
         border-radius: 50%;
 
@@ -233,7 +233,7 @@
         background-color: #34c949;
         border: 1px solid #219a30;
       }
-      span > #btn-min {
+      span > #btn-min {  
         background-color: #fcbf42;
         border: 1px solid #df9a33;
       }

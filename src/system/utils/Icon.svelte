@@ -34,13 +34,11 @@
   .icon.taskbar {
     width : 3rem;
     height: 3rem;
-
-    filter: saturate(0) invert(1);
   }
 
   .icon {
     img {
-      background-color: var(--background-1);
+      background-color: var(--background-0);
       padding: 10px;
       border-radius: 20px;
     }
@@ -61,7 +59,7 @@
     }
 
     &:hover {
-      filter: brightness(1.1);
+      filter: brightness(1.2);
       font-weight: bold;
       transition: 0.1s;
     }

@@ -52,6 +52,7 @@
         border-radius: 5px;
     }
     input:checked + label{
+        padding-left: 0.5rem;
         text-decoration: line-through;
     }
     li{
@@ -70,6 +71,7 @@
 
         label{
             display: inline-block;
+            margin-left: 1rem;
             width: 100%;
             font-size: 30px;
         }
