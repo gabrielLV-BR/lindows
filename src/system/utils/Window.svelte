@@ -104,9 +104,9 @@
     <span>{name}</span>
     <!-- Botões de ação -->
     <span>
-      <button on:click={minimizar}>_</button>
-      <button on:click={maximizar}>[⠀]</button>
-      <button on:click={fechar}>X</button>
+      <button class="btn-window" id="btn-min" on:click={minimizar}></button>
+      <button class="btn-window" id="btn-max" on:click={maximizar}></button>
+      <button class="btn-window" id="btn-cls" on:click={fechar}></button>
     </span>
   </header>
   <main>
@@ -204,33 +204,37 @@
       padding: 0 5px;
       background: #242424;
 
-      cursor: grab;
-
       span {
         color: white;
       }
 
-      span > button {
+      span > .btn-window {
         cursor: pointer;
 
-        border: none;
         display: inline-block;
 
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.3rem;
+        height: 1.3rem;
+
+        border-radius: 50%;
 
         margin: 0;
         padding: 0;
-
-        // Só por enquanto
-        background: #444444;
-        color: white;
       }
-
-      span > button:hover {
-        background-color: #454545;
-        color: #fff;
+      span > #btn-max {
+        background-color: #34C949;
+        border: 1px solid #219A30;
       }
+      span > #btn-min {
+        background-color: #FCBF42;
+        border: 1px solid #DF9A33;
+      }
+      span > #btn-cls {
+        background-color: #FB625D;
+        border: 1px solid #EA3641;
+      }
+      
+      
     }
 
     main {
