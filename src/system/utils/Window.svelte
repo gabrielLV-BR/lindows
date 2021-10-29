@@ -214,8 +214,8 @@
 
         display: inline-block;
 
-        width: 1rem;
-        height: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
 
         border-radius: 50%;
 
@@ -227,7 +227,7 @@
       }
 
       span > button:hover {
-        filter: brightness(1.2);
+        filter: brightness(1.05);
       }
       span > #btn-max {
         background-color: #34c949;

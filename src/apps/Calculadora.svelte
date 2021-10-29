@@ -4,22 +4,22 @@
 
   // Insere novos caracteres
   function insert(num) {
-    resultado = `${resultado}${num}`
+    resultado = `${resultado}${num}`;
   }
   // Limpa a variável "resultado"
   function clean() {
-    resultado = ""
+    resultado = "";
   }
   // Exclui o último caractere da variavel "resultado"
   function back() {
-    resultado = resultado.slice(0, resultado.length - 1)
+    resultado = resultado.slice(0, resultado.length - 1);
   }
   // Calcula todos os caracteres incluidos na variavel "resultado"
   function calcular() {
     if (resultado) {
-      resultado = eval(resultado)
+      resultado = eval(resultado);
     } else {
-      resultado = "Nada..."
+      resultado = "Nada...";
     }
   }
 </script>
@@ -27,24 +27,24 @@
 <main class="calculadora">
   <p id="resultado">{resultado}</p>
   <div class="botoes">
-    <button on:click={clean}>C</button>
-    <button on:click={back}>⬅</button>
-    <button on:click={() => insert("/")}>/</button>
-    <button on:click={() => insert("*")}>*</button>
-    <button on:click={() => insert("7")}>7</button>
-    <button on:click={() => insert("8")}>8</button>
-    <button on:click={() => insert("9")}>9</button>
-    <button on:click={() => insert("-")}>-</button>
-    <button on:click={() => insert("4")}>4</button>
-    <button on:click={() => insert("5")}>5</button>
-    <button on:click={() => insert("6")}>6</button>
-    <button on:click={() => insert("+")}>+</button>
-    <button on:click={() => insert("1")}>1</button>
-    <button on:click={() => insert("2")}>2</button>
-    <button on:click={() => insert("3")}>3</button>
-    <button id="btnequal" on:click={calcular}>=</button>
-    <button id="btnzero" on:click={() => insert("0")}>0</button>
-    <button on:click={() => insert(".")}>.</button>
+    <button title="Limpar" on:click={clean}>C</button>
+    <button title="Excluir" on:click={back}>⬅</button>
+    <button title="Divisão" on:click={() => insert("/")}>/</button>
+    <button title="Vezes" on:click={() => insert("*")}>*</button>
+    <button title="Sete" on:click={() => insert("7")}>7</button>
+    <button title="Oito" on:click={() => insert("8")}>8</button>
+    <button title="Nove" on:click={() => insert("9")}>9</button>
+    <button title="Subtração" on:click={() => insert("-")}>-</button>
+    <button title="Quatro" on:click={() => insert("4")}>4</button>
+    <button title="Cinco" on:click={() => insert("5")}>5</button>
+    <button title="Seis" on:click={() => insert("6")}>6</button>
+    <button title="Adição" on:click={() => insert("+")}>+</button>
+    <button title="Um" on:click={() => insert("1")}>1</button>
+    <button title="Dois" on:click={() => insert("2")}>2</button>
+    <button title="Três" on:click={() => insert("3")}>3</button>
+    <button title="Resultado" id="btnequal" on:click={calcular}>=</button>
+    <button title="Zero" id="btnzero" on:click={() => insert("0")}>0</button>
+    <button title="Ponto" on:click={() => insert(".")}>.</button>
   </div>
 </main>
 
@@ -67,7 +67,7 @@
 
     align-self: center;
     justify-self: center;
-    
+
     border-radius: 5px;
   }
   #resultado {

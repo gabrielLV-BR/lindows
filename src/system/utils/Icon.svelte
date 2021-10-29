@@ -1,6 +1,14 @@
 <script>
+  import { globalVariables } from "../../store";
+
   export let image = "../res/images/logo3.png";
-  export let name = "Prograna";
+  export let name = "Programa";
+
+  let dark = document.body.className == "dark";
+
+  globalVariables.subscribe((newVal) => {
+    dark = newVal.theme === "dark";
+  });
 
   export let desktop = false;
   export let taskbar = false;
@@ -9,40 +17,64 @@
   export let onDoubleClick = () => null;
 </script>
 
-<div class="icon" class:desktop class:taskbar on:click={onClick} on:dblclick={onDoubleClick}>
-  <img draggable="false" src={image} alt={name} />
+<div
+  class="icon"
+  class:desktop
+  class:taskbar
+  on:click={onClick}
+  on:dblclick={onDoubleClick}
+>
+  <span class="img-container">
+    <img draggable="false" class:dark src={image} alt={name} />
+  </span>
   {#if !taskbar}
     <p>{name}</p>
   {/if}
 </div>
 
 <style scoped lang="scss">
+  .dark {
+    filter: invert(1);
+  }
 
   .icon.desktop {
     margin: 1rem;
-    width:  7rem;
+    width: 7rem;
     height: 7rem;
 
-    img {
-      display: inline-block;
-      margin: auto;
-      width: 4rem;
-      height: 4rem;
+    .img-container img {
+      width:  3rem;
+      height: 3rem;
     }
   }
 
   .icon.taskbar {
-    width : 3rem;
+    width: 3rem;
     height: 3rem;
   }
 
   .icon {
-    img {
-      background-color: var(--background-0);
-      padding: 10px;
-      border-radius: 20px;
+    &,
+    .img-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    
+
+    .img-container {
+      background-color: var(--background-0);
+
+      border-radius: 1.2rem;
+
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .img-container img {
+      width: 2rem;
+      height: 2rem;
+    }
+
     cursor: pointer;
     user-select: none;
     text-align: center;

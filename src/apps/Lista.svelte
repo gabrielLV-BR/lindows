@@ -65,6 +65,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        
         input, button.remover {
             margin: 0;
         }

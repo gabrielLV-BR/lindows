@@ -47,6 +47,7 @@ body {
 * {
 	box-sizing: border-box;
 	color: var(--font-color-1);
+	transition: background-color 200ms;
 }
 
 a {
@@ -98,4 +99,11 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+
+@media screen and (max-width: 1400px) {
+	:root {
+		font-size: 12px;
+	}
 }

@@ -1,15 +1,15 @@
-import _Chrome from "./apps/Programa.svelte";
+import _Navegador from "./apps/Navegador.svelte";
 import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";
 import _Lista from "./apps/Lista.svelte";
 import _Dinogame from "./apps/jogos/Dinogame.svelte";
 import _Configuracoes from "./apps/Settings.svelte";
 
-const Chrome = {
-    name: "Chrome",
-    id: "chrome",
-    image: "../res/icons/chrome.png",
-    app: _Chrome
+const Navegador = {
+    name: "Navegador",
+    id: "navegador",
+    image: "../res/icons/browser.svg",
+    app: _Navegador
 }
 
 const Cronometro = {
@@ -48,7 +48,7 @@ const Settings = {
 }
 
 const Programas = [
-    Chrome,
+    Navegador,
     Cronometro,
     Calculadora,
     Lista,

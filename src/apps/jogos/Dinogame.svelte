@@ -355,8 +355,10 @@
     display: block;
     margin: auto;
 
-    width: 499px;
-    height: 465px;
+    width: auto;
+    height: 90%;
+
+    aspect-ratio: 499/465;
   }
 
   .instructions {
