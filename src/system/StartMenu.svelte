@@ -99,13 +99,15 @@
 
   img {
     margin: 0 0.8rem;
-    width: 1rem;
+    width: 1.5rem;
   }
 
   .app-search {
     width: 100%;
     margin: 0;
     outline: none;
+
+    font-size: 1.5rem;
 
     border-width: 2px;
     border-color: var(--background-1);
@@ -123,7 +125,7 @@
       color: var(--font-color-1);
 
       padding: 0.2rem;
-      font-size: 1.5rem;
+      font-size: 2rem;
 
       display: flex;
       flex-direction: row;
@@ -159,9 +161,11 @@
       transition: max-height 200ms;
 
       p {
+        display: flex;
         background: var(--background-2);
         margin: 0;
         padding: 0.2rem 0;
+        font-size: 1.6rem;
         user-select: none;
       }
 
