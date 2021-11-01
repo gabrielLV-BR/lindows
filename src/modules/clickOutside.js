@@ -1,3 +1,6 @@
+// Essa função está no próprio repositório do svelte e serve para
+// detectar um clique fora do elemento atual
+
 export function clickOutside(node) {
   
     const handleClick = event => {

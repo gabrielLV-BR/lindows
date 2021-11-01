@@ -1,10 +1,18 @@
+<!-- 
+  O StartMenu é um lançador de aplicativos compacto
+-->
+
 <script>
   import { clickOutside } from "../modules/clickOutside";
 
+  // Quando exportamos variáveis, as fazemos disponíveis pra serem
+  // passadas como propriedades
   export let launch = (_) => null;
   export let apps = [];
   export let handleClickOutside = (_) => null;
 
+  // Variáveis prefixadas com $: são reativas: elas dependem de um valor
+  // de uma variável mutável e ela atualiza de acordo
   $: partitionedApps = partitionApps(apps);
 
   let search = "";
@@ -32,6 +40,7 @@
   }
 </script>
 
+<!-- O use: nos permite adicionar eventos customizados -->
 <main use:clickOutside on:click_outside={handleClickOutside} class="start-menu">
   <div class="app-list">
     {#if search === ""}
@@ -70,6 +79,10 @@
     {/if}
   </div>
 
+  <!-- 
+    Não é recomendado deixar a opção "autofocus" ativa,
+    mas ela é a que resolveu o problema mais fácil
+  -->
   <input
     autofocus
     class="app-search"

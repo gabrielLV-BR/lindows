@@ -1,11 +1,15 @@
+<!-- O Icon é quem lança os aplicativos e é quem fica na 
+  área de trabalho e na de tarefas -->
 <script>
   import { globalVariables } from "../../store";
 
   export let image = "../res/images/logo3.png";
   export let name = "Programa";
 
+  // Pegamos o estilo
   let dark = document.body.className == "dark";
-
+  // E nos inscrevemos ao valor do tema para atualizarmos
+  // quando ele for
   globalVariables.subscribe((newVal) => {
     dark = newVal.theme === "dark";
   });
@@ -34,6 +38,8 @@
 
 <style scoped lang="scss">
   .dark {
+    // Se estamos no tema dark, invertemos as imagens 
+    // para ficarem brancas
     filter: invert(1);
   }
 
@@ -43,7 +49,7 @@
     height: 7rem;
 
     .img-container img {
-      width:  3rem;
+      width: 3rem;
       height: 3rem;
     }
   }

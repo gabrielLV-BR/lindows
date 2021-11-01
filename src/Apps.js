@@ -1,3 +1,6 @@
+// Esse arquivo contém a importação e a organização dos 
+// apps para que sejam facilmente lançados e identificados
+
 import _Navegador from "./apps/Navegador.svelte";
 import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";

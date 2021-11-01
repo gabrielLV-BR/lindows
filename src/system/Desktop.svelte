@@ -1,4 +1,11 @@
+<!-- 
+  O Desktop é a página inicial, ele é responsável por gerenciar as
+  janelas abertas e seus ícones na barra de tarefas.
+-->
+
+
 <script>
+  // Vai ser utilizado para atribuir um id único para cada "processo"
   import { v1 as uuid } from "uuid";
 
   import Window from "./utils/Window.svelte";
@@ -19,7 +26,11 @@
     aplicativosAbertos = [
       ...aplicativosAbertos,
       {
+        // A função findProgram vêm do Apps.js e retorna o programa
+        // com o mesmo id
         ...findProgram(id),
+        // Adicionamos um número globalmente aleatório para deixarmos
+        // cada processo único
         id: `${id}-${uuid()}`,
         minimized: false,
         focused: false,
@@ -35,6 +46,9 @@
     const aplicativo = aplicativosAbertos.find(
       (app) => app.id === message.detail.id
     );
+
+    // Lidamos com as diferentes mensagens que podem ser enviadas
+    // pelas janelas
 
     if (aplicativo != -1) {
       // O "minimize" é tratado fora pois se não iríamos iterar duas vezes pelo aplicativosAbertos
@@ -72,7 +86,13 @@
 
 <div class="tela">
   <main class="área-de-trabalho">
+    <!-- Esse "each" é um "for in" loop -->
     {#each iconesDoDesktop as icone}
+      <!-- 
+        Podemos passar valores e funções para os componentes,
+        chamadas de propriedades
+      --> 
+
       <Icon
         desktop
         name={icone.name}
@@ -87,7 +107,10 @@
       />
     {/each}
   </main>
-  <!-- Esse footer atua como um 'wrapper' -->
+  <!-- 
+    Esse footer atua como um 'wrapper' para que a barra de tarefas
+    apareça no hover 
+  -->
   <footer class="barra-de-tarefas-wrapper">
     <div class="barra-de-tarefas" class:menuInicialAberto>
       {#if menuInicialAberto}
@@ -111,6 +134,7 @@
   </footer>
 </div>
 
+<!-- Usamos scss no projeto para agilizarmos a escrita do código -->
 <style lang="scss">
   .tela {
     display: flex;

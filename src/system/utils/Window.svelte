@@ -1,3 +1,8 @@
+
+<!-- 
+  O Window é o rseponsável pela manipulação da janela
+  e pela transmissão de mensagens da mesma 
+-->
 <script>
   import { createEventDispatcher } from "svelte";
 
@@ -42,7 +47,7 @@
 
   const maximizar = () => {
     if (maximized) {
-      // Remover o "style" efetivamente reseta as mudanças feitas por código
+      // Resetamos para os valores anteriores
       janela.style.left = `${boundingBoxAnterior.x}px`;
       janela.style.top = `${boundingBoxAnterior.y}px`;
       janela.style.width = `${boundingBoxAnterior.width}px`;
@@ -66,6 +71,7 @@
 
     let boundingBox = janela.getBoundingClientRect();
 
+    // Calculamos offset do canto superior esquerdo do elemento
     offsetX = event.clientX - boundingBox.left;
     offsetY = event.clientY - boundingBox.top;
   };
@@ -75,6 +81,8 @@
   };
 
   const mouseMove = (event) => {
+
+    // Settamos a posição da janela para a do mouse - o offset
     janela.style.left = `${event.clientX - offsetX}px`;
     janela.style.top = `${event.clientY - offsetY}px`;
   };
@@ -115,6 +123,7 @@
 </div>
 
 <style scoped lang="scss">
+  // Animações
   @keyframes minimize {
     to {
       transform: translate3d(0, 100vh, 0) scale(0.2);
@@ -139,6 +148,8 @@
       transform: translate3d(0, 0, 0) scale(0);
     }
   }
+
+  //
 
   .minimized {
     animation: minimize 400ms ease forwards !important;

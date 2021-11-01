@@ -1,3 +1,5 @@
+<!-- INCOMPLETO MAS NÃO SEI SE VAMOS COMPLETAR -->
+
 <script>
     import { globalVariables } from "../store";
     function toggleTheme() {
