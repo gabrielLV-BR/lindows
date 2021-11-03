@@ -1,13 +1,19 @@
+<!-- O Icon é quem lança os aplicativos e é quem fica na 
+  área de trabalho e na de tarefas -->
 <script>
   import { globalVariables } from "../../store";
 
   export let image = "../res/images/logo3.png";
   export let name = "Programa";
 
+  // Pegamos o estilo
   let dark = document.body.className == "dark";
-
+  let isMobile = globalVariables.isMobile;
+  // E nos inscrevemos ao valor do tema para atualizarmos
+  // quando ele for
   globalVariables.subscribe((newVal) => {
     dark = newVal.theme === "dark";
+    isMobile = newVal.isMobile;
   });
 
   export let desktop = false;
@@ -15,13 +21,22 @@
 
   export let onClick = () => null;
   export let onDoubleClick = () => null;
+
+  function handleClick() {
+    if(isMobile && desktop) {
+      onDoubleClick();
+    } else {
+      onClick();
+    }
+  }
 </script>
 
 <div
   class="icon"
   class:desktop
   class:taskbar
-  on:click={onClick}
+  class:isMobile
+  on:click={handleClick}
   on:dblclick={onDoubleClick}
 >
   <span class="img-container">
@@ -33,7 +48,10 @@
 </div>
 
 <style scoped lang="scss">
+
   .dark {
+    // Se estamos no tema dark, invertemos as imagens 
+    // para ficarem brancas
     filter: invert(1);
   }
   
@@ -43,7 +61,7 @@
     height: 7rem;
 
     .img-container img {
-      width:  3rem;
+      width: 3rem;
       height: 3rem;
     }
   }
@@ -90,7 +108,7 @@
     }
 
     &:hover {
-      filter: brightness(1.2);
+      filter: brightness(1.1);
       font-weight: bold;
       transition: 0.1s;
     }

@@ -21,9 +21,9 @@
       <tr>
         <td class="mesDiferente">31</td>
         <td>1</td>
-        <td id="hoje">2</td>
+        <td>2</td>
         <td>3</td>
-        <td>4</td>
+        <td id="hoje">4</td>
         <td>5</td>
         <td>6</td>
       </tr>

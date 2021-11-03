@@ -1,9 +1,13 @@
+// Esse arquivo contém a importação e a organização dos 
+// apps para que sejam facilmente lançados e identificados
+
 import _Navegador from "./apps/Navegador.svelte";
 import _Cronometro from "./apps/Cronometro.svelte";
 import _Calculadora from "./apps/Calculadora.svelte";
 import _Lista from "./apps/Lista.svelte";
 import _Dinogame from "./apps/jogos/Dinogame.svelte";
 import _Configuracoes from "./apps/Settings.svelte";
+import _Galeria from "./apps/Galeria.svelte";
 
 const Navegador = {
     name: "Navegador",
@@ -47,13 +51,23 @@ const Settings = {
     app: _Configuracoes
 }
 
+
+
+const Galeria = {
+    name: "Galeria",
+    id: "galeria",
+    image:"../res/icons/gallery.svg",
+    app: _Galeria
+}
+
 const Programas = [
     Navegador,
     Cronometro,
     Calculadora,
     Lista,
     Dinogame,
-    Settings
+    Settings,
+    Galeria
 ]
 
 function sortByName(a, b) {

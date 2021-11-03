@@ -1,5 +1,10 @@
+<!-- 
+  O Window é o rseponsável pela manipulação da janela
+  e pela transmissão de mensagens da mesma 
+-->
 <script>
   import { createEventDispatcher } from "svelte";
+  import { globalVariables } from "../../store";
 
   export let app;
   export let id;
@@ -10,6 +15,11 @@
 
   let maximized = false;
   let closing = false;
+  let isMobile = false;
+
+  globalVariables.subscribe((newVal) => {
+    isMobile = newVal.isMobile;
+  });
 
   // Um 'eventDispatcher' é uma função que nos permite enviar eventos de um componente pra outro,
   // o que facilita a comunicação entre componentes
@@ -40,9 +50,15 @@
 
   let boundingBoxAnterior = null;
 
+  let dark = document.body.className == "dark";
+
+  globalVariables.subscribe((newVal) => {
+    dark = newVal.theme === "dark";
+  });
+
   const maximizar = () => {
     if (maximized) {
-      // Remover o "style" efetivamente reseta as mudanças feitas por código
+      // Resetamos para os valores anteriores
       janela.style.left = `${boundingBoxAnterior.x}px`;
       janela.style.top = `${boundingBoxAnterior.y}px`;
       janela.style.width = `${boundingBoxAnterior.width}px`;
@@ -66,6 +82,7 @@
 
     let boundingBox = janela.getBoundingClientRect();
 
+    // Calculamos offset do canto superior esquerdo do elemento
     offsetX = event.clientX - boundingBox.left;
     offsetY = event.clientY - boundingBox.top;
   };
@@ -75,6 +92,7 @@
   };
 
   const mouseMove = (event) => {
+    // Settamos a posição da janela para a do mouse - o offset
     janela.style.left = `${event.clientX - offsetX}px`;
     janela.style.top = `${event.clientY - offsetY}px`;
   };
@@ -91,30 +109,42 @@
   class:focused
   class:minimized
   class:closing
+  class:isMobile
   bind:this={janela}
   on:mousedown={focar}
   on:resize={handleResize}
 >
-  <header on:mousedown={mouseDown} on:dblclick={maximizar} on:mouseup={mouseUp}>
-    <!-- Ícone -->
-    <span class="icon">
-      <img src={image} alt="Ícone" />
-    </span>
-    <!-- Título -->
-    <span>{name}</span>
-    <!-- Botões de ação -->
-    <span>
-      <button class="btn-window" id="btn-min" on:click={minimizar} />
-      <button class="btn-window" id="btn-max" on:click={maximizar} />
-      <button class="btn-window" id="btn-cls" on:click={fechar} />
-    </span>
-  </header>
+  {#if !isMobile}
+    <header
+      on:mousedown={mouseDown}
+      on:dblclick={maximizar}
+      on:mouseup={mouseUp}
+    >
+      <!-- Ícone -->
+      <span class="icon">
+        <img src={image} alt="Ícone" class:dark />
+      </span>
+      <!-- Título -->
+      <span>{name}</span>
+      <!-- Botões de ação -->
+      <span>
+        <button class="btn-window" id="btn-min" on:click={minimizar} />
+        <button class="btn-window" id="btn-max" on:click={maximizar} />
+        <button class="btn-window" id="btn-cls" on:click={fechar} />
+      </span>
+    </header>
+  {/if}
   <main>
     <svelte:component this={app} {maximized} />
   </main>
 </div>
 
 <style scoped lang="scss">
+  .dark {
+    filter: invert(1);
+  }
+
+  // Animações
   @keyframes minimize {
     to {
       transform: translate3d(0, 100vh, 0) scale(0.2);
@@ -139,6 +169,8 @@
       transform: translate3d(0, 0, 0) scale(0);
     }
   }
+
+  //
 
   .minimized {
     animation: minimize 400ms ease forwards !important;
@@ -233,7 +265,7 @@
         background-color: #34c949;
         border: 1px solid #219a30;
       }
-      span > #btn-min {  
+      span > #btn-min {
         background-color: #fcbf42;
         border: 1px solid #df9a33;
       }
@@ -257,5 +289,15 @@
         user-select: none;
       }
     }
+  }
+  .isMobile {
+    header {
+      display: none;
+    }
+
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
   }
 </style>

@@ -1,11 +1,19 @@
+<!-- 
+  O StartMenu é um lançador de aplicativos compacto
+-->
+
 <script>
   import { clickOutside } from "../modules/clickOutside";
   import { globalVariables } from "../store";
 
+  // Quando exportamos variáveis, as fazemos disponíveis pra serem
+  // passadas como propriedades
   export let launch = (_) => null;
   export let apps = [];
   export let handleClickOutside = (_) => null;
 
+  // Variáveis prefixadas com $: são reativas: elas dependem de um valor
+  // de uma variável mutável e ela atualiza de acordo
   $: partitionedApps = partitionApps(apps);
 
   let search = "";
@@ -38,6 +46,7 @@ globalVariables.subscribe((newVal) => {
 });
 </script>
 
+<!-- O use: nos permite adicionar eventos customizados -->
 <main use:clickOutside on:click_outside={handleClickOutside} class="start-menu">
   <div class="app-list">
     {#if search === ""}
@@ -50,12 +59,12 @@ globalVariables.subscribe((newVal) => {
           />
           <label for="checkbox-{appSection.letter}" class="partition">
             {appSection.letter}
-            <img src="../res/images/arrow.svg" id="arrow" alt="" class="after" class:dark>
+            <img src="../res/icons/arrow.png" id="arrow" alt="" class="after" class:dark />
           </label>
           <section class="content">
             {#each appSection.apps as app (app)}
               <p on:click={() => launch(app.id)}>
-                <img src={app.image} alt="" />
+                <img src={app.image} alt="" class:dark />
                 {app.name}
               </p>
             {/each}
@@ -68,7 +77,7 @@ globalVariables.subscribe((newVal) => {
             .toLowerCase()
             .startsWith(search.toLowerCase())) as app (app.id)}
           <p on:click={() => launch(app.id)}>
-            <img src={app.image} alt="" />
+            <img src={app.image} alt="" class:dark />
             {app.name}
           </p>
         {/each}
@@ -76,6 +85,10 @@ globalVariables.subscribe((newVal) => {
     {/if}
   </div>
 
+  <!-- 
+    Não é recomendado deixar a opção "autofocus" ativa,
+    mas ela é a que resolveu o problema mais fácil
+  -->
   <input
     autofocus
     class="app-search"
@@ -86,9 +99,8 @@ globalVariables.subscribe((newVal) => {
 </main>
 
 <style scoped lang="scss">
-  // teste da class 'dark'
   .dark {
-    fill: red;
+    filter: invert(1);
   }
   .start-menu {
     opacity: .9;
@@ -108,10 +120,12 @@ globalVariables.subscribe((newVal) => {
   }
 
   img {
-    width: 1.5rem;
+    width: 2rem;
+    height: 2rem;
   }
   #arrow {
-    filter: invert(1);
+    width: 1.5rem;
+    height: 1.5rem;
   }
   .app-search {
     width: 100%;
@@ -153,7 +167,7 @@ globalVariables.subscribe((newVal) => {
     }
 
     input[type="checkbox"]:checked ~ label > .after {
-      transform: rotate(180deg);
+      transform: rotate(270deg);
     }
 
     input[type="checkbox"]:checked ~ section {
