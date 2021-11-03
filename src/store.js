@@ -5,5 +5,6 @@
 import { writable, derived } from "svelte/store";
 
 export const globalVariables = writable({
-    theme: "light"
+    theme: "light",
+    isMobile: false
 });

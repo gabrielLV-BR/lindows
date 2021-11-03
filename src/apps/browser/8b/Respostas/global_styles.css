@@ -1,0 +1,93 @@
+/* CSS para as "páginas" */
+
+:root {
+  --background: #292929;
+
+  --browser-dark: #000;
+
+  --font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  --browser-gray-light: #797979;
+  --browser-gray: #313131;
+  --browser-gray-dark: #1c1c1c;
+}
+
+body{
+  font-family: var(--font-family);
+}
+
+fieldset {
+  width: fit-content;
+  height: fit-content;
+
+  padding: 20px;
+
+  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+button {
+  background-color: var(--background);
+  border: 1.5px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+legend {
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #fff;
+
+  margin: 0 auto;
+}
+
+form {
+  color: #fff;
+  width: 300px;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+}
+
+div:not(:last-of-type) {
+  margin-bottom: 12px;
+}
+
+.content label:not([type="radio"]) {
+  margin: auto;
+  margin-left: 0;
+}
+
+select {
+  outline: none;
+
+  background: var(--background);
+  color: #fff;
+  font-family: ubuntu;
+  border-radius: 5px;
+}
+
+option {
+  color: #fff;
+  font-family: ubuntu;
+}
+
+input {
+  outline: none;
+  color: #fff;
+  background: var(--background);
+}
+
+input[type="radio"] {
+  margin: auto 4px;
+  filter: saturate(0);
+}
+
+input[type="text"] {
+  border: 1px solid var(--browser-gray-light);
+  background: var(--background);
+  border-radius: 5px;
+}

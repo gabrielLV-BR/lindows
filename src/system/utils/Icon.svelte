@@ -8,10 +8,12 @@
 
   // Pegamos o estilo
   let dark = document.body.className == "dark";
+  let isMobile = globalVariables.isMobile;
   // E nos inscrevemos ao valor do tema para atualizarmos
   // quando ele for
   globalVariables.subscribe((newVal) => {
     dark = newVal.theme === "dark";
+    isMobile = newVal.isMobile;
   });
 
   export let desktop = false;
@@ -19,13 +21,22 @@
 
   export let onClick = () => null;
   export let onDoubleClick = () => null;
+
+  function handleClick() {
+    if(isMobile && desktop) {
+      onDoubleClick();
+    } else {
+      onClick();
+    }
+  }
 </script>
 
 <div
   class="icon"
   class:desktop
   class:taskbar
-  on:click={onClick}
+  class:isMobile
+  on:click={handleClick}
   on:dblclick={onDoubleClick}
 >
   <span class="img-container">
@@ -37,12 +48,13 @@
 </div>
 
 <style scoped lang="scss">
+
   .dark {
     // Se estamos no tema dark, invertemos as imagens 
     // para ficarem brancas
     filter: invert(1);
   }
-
+  
   .icon.desktop {
     margin: 1rem;
     width: 7rem;

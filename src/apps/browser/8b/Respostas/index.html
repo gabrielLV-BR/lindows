@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="window_styles.css">
+    <link rel="stylesheet" href="global_styles.css">
+    <link rel="stylesheet" href="specific_styles.css">
+
+    <!-- 
+      Esse scriptzinho é só pra mover a janela, ele pode
+      ser ignorado 
+    -->
+    <script defer src="move.js"></script>
+  </head>
+  <body>
+    <div id="window">
+      <div class="border" id="border">
+        <span>
+          <img draggable="false" class="browser-icon" src="images/icon.svg" alt="">
+        </span>
+        <span>Exercício 8</span>
+        <span>
+          <button>
+            <img src="images/minimize.svg" alt="">
+          </button>
+          <button>
+            <img src="images/maximize.svg" alt="">
+          </button>
+          <button>
+            <img src="images/close.svg" alt="">
+          </button>
+        </span>
+      </div>
+
+      <input type="radio" name="tab" id="a" checked />
+      <input type="radio" name="tab" id="b" />
+      <input type="radio" name="tab" id="c" />
+      <input type="radio" name="tab" id="d" />
+
+      <header class="tabs">
+        <label for="a"> Nome, sexo e escolaridade </label>
+        <label for="b"> Cartão de Crédito </label>
+        <label for="c"> Compra de Aquário </label>
+        <label for="d"> Escola Virtual </label>
+        <label for="e" class="add"> 
+          <img src="images/close.svg">
+        </label>
+      </header>
+      <main class="content">
+        <section class="a">
+          <fieldset>
+            <legend>Nome, sexo e escolaridade</legend>
+            <form action="">
+              <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" />
+              </div>
+              <div>
+                <label>Sexo:</label>
+      
+                <input type="radio" name="sexo" id="masculino" />
+                <label style="margin:0" for="masculino">Masculino</label>
+                <input type="radio" name="sexo" id="feminino" />
+                <label style="margin:0" for="feminino">Feminino</label>
+              </div>
+              <div>
+                <label for="escolaridade">Escolaridade:</label>
+                <select name="escolaridade" id="escolaridade">
+                  <option value="" disabled selected>
+                    Selecione sua escolaridade
+                  </option>
+                  <option value="1">1º Grau</option>
+                  <option value="2">2º Grau</option>
+                  <option value="3">Superior</option>
+                </select>
+              </div>
+            </form>
+          </fieldset>
+        </section>
+        <section class="b">
+          <fieldset>
+            <legend>Cartão de crédito</legend>
+            <form action="">
+              <div>
+                <label for="numero">Número:</label>
+                <input type="number" id="numero" name="numero" />
+              </div>
+              <div>
+                <label>Bandeira:</label>
+      
+                <div class="cartoes">
+                  <span>
+                    <input type="radio" name="bandeira" id="visa" />
+                    <label for="visa">
+                      <img src="images/visa.gif" alt="">
+                    </label>
+                  </span>
+                  <span>
+      
+                    <input type="radio" name="bandeira" id="mastercard" />
+                    <label for="mastercard">
+                      <img src="images/master.gif" alt="">
+                    </label>
+                  </span>
+                  <span>
+      
+                    <input type="radio" name="bandeira" id="americanexpress" />
+                    <label for="americanexpress">
+                      <img src="images/amex.gif">
+                    </label>
+                  </span>
+                </div>
+                </div>
+              <div>
+                <label for="escolaridade">Validade:</label>
+                <select name="escolaridade" id="escolaridade">
+                  <option value="" disabled selected>
+                    Selecione a validade
+                  </option>
+                  <option value="1">2012</option>
+                  <option value="2">2013</option>
+                  <option value="3">2014</option>
+                </select>
+              </div>
+            </form>
+          </fieldset>
+        </section>
+        <section class="c">
+          <fieldset>
+            <legend>Compras</legend>
+            <form action="" style="width:500px">
+              <div class="top">
+                <aside>
+                  <h1>Produtos</h1>
+                  <span>
+                    <select name="aquario">
+                      <optgroup label="Aquários">
+                        <option value="1">Aquário 43L</option>
+                        <option value="2">Aquário 84L</option>
+                      </optgroup>
+                    </select>
+                    <button>+</button>
+                  </span>
+                  <h1>Complementos</h1>
+                  <div class="complementos">
+                    <span>
+                      <input type="radio" name="complement" id="ambos" />
+                      <label for="ambos">Movel + Luminária</label>
+                    </span>
+                    <span>
+                      <input type="radio" name="complement" id="movel" />
+                      <label for="movel">Luminária</label>
+                    </span>
+                    <span>
+                      <input type="radio" name="complement" id="luz" />
+                      <label for="luz">Só vidro</label>
+                    </span>
+                  </div>
+                </aside>
+                <div class="list">
+                  <h1>Lista de Compras</h1>
+                  <textarea name="lista" cols="20" rows="7"></textarea>
+                </div>
+              </div>
+              <div class="bottom">
+                <span>
+                  <input type="checkbox" name="gift" id="gift" />
+                  <label for="gift">Entrega como Presente</label>
+                </span>
+                <span>
+                  <label for="total">Valor Total:</label>
+                  <input type="number" name="total" id="total" />
+                </span>
+              </div>
+            </form>
+          </fieldset>
+        </section>
+        <section class="d">
+          <fieldset>
+            <legend>Escola Virtual</legend>
+      
+            <header>
+              <h1>Escola Virtual</h1>
+              <h3>Formulário de Pré-Matrícula</h3>
+            </header>
+      
+            <hr />
+      
+            <form>
+              <div class="top">
+                <p>Dados Pessoais:</p>
+                <span>
+                  <label for="name">Nome:</label>
+                  <input type="text" name="name" id="name" />
+                </span>
+                <span class="multiple">
+                  <label for="birth">Nascimento(dd/mm/aaaa):</label>
+                  <br>
+                  <input type="number" name="birth" id="day" />
+                  <label for="day">/</label>
+                  <input type="number" name="birth" id="month" />
+                  <label for="month">/</label>
+                  <input type="number" name="birth" id="year" />
+                </span>
+                <span>
+                  <label for="mom">Nome da Mãe</label>
+                  <input type="text" name="mom" id="mom" />
+                </span>
+                <span>
+                  <label for="dad">Nome do Pai</label>
+                  <input type="text" name="dad" id="" />
+                </span>
+                <span class="multiple">
+                  <label for="DDD">Telefone: <br> DDD</label>
+                  (
+                  <input type="number" name="DDD" id="DDD" />
+                  )
+                  <label for="tel">Tel:</label>
+                  <input type="tel" name="tel" id="tel" />
+                  <label for="ramal">Ramal</label>
+                  <input type="number" name="ramal" id="ramal" />
+                </span>
+                <span>
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="email" />
+                </span>
+              </div>
+              <hr>
+              <div class="bottom">
+                <p>Informações de Matrícula</p>
+                <section class="info">
+                  <div class="left">
+                    <label for="year">Série:</label>
+                    <br />
+                    <select name="year" id="year">
+                      <option value="0">Pré-Escolar</option>
+                      <option value="1">Primeiro Ano</option>
+                      <option value="2">Segundo Ano</option>
+                      <option value="3">Terceiro Ano</option>
+                      <option value="4">Quarto Ano</option>
+                      <option value="5">Quinto Ano</option>
+                      <option value="6">Sexto Ano</option>
+                      <option value="7">Sétimo Ano</option>
+                      <option value="8">Oitavo Ano</option>
+                      <option value="9">Nono Ano</option>
+                      <option value="10">Primeiro Ano do Ensino Médio</option>
+                      <option value="11">Segundo Ano do Ensino Médio</option>
+                      <option value="12">Terceiro Ano do Ensino Médio</option>
+                    </select>
+                  </div>
+                  <div class="middle">
+                    <label for="turn">Turno</label>
+                    <br />
+                    <span>
+                      <input type="radio" name="turn" id="morning" />
+                      <label for="morning">Manhã</label>
+                    </span>
+                    <span>
+                      <input type="radio" name="turn" id="afternoon" />
+                      <label for="afternoon">Tarde</label>
+                    </span>
+                  </div>
+                  <div class="right">
+                    <label for="extra">Atividades Extracurriculares:</label>
+                    <br />
+                    <span>
+                      <input type="checkbox" name="extra" id="info" />
+                      <label for="info">Informática</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" name="extra" id="music" />
+                      <label for="music">Música</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" name="extra" id="ballet" />
+                      <label for="ballet">Ballet</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" name="extra" id="painting" />
+                      <label for="painting">Pintura</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" name="extra" id="judo" />
+                      <label for="judo">Judô</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" name="extra" id="footbal" />
+                      <label for="footbal">Futebol</label>
+                    </span>
+                  </div>
+                </section>
+              </div>
+              <footer>
+                <button type="submit">Envia Formulário</button>
+                <button type="reset">Limpa Campos</button>
+              </footer>
+            </form>
+          </fieldset>
+        </section>
+      </main>
+    </div>
+
+    <img style="user-select: none;" draggable="false" src="images/start.png" alt="">
+  </body>
+</html>
