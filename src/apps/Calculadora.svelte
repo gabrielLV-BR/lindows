@@ -28,9 +28,9 @@
   <p id="resultado">{resultado}</p>
   <div class="botoes">
     <button title="Limpar" on:click={clean}>C</button>
-    <button title="Excluir" on:click={back}>⬅</button>
+    <button title="Excluir" on:click={back}>⇦</button>
     <button title="Divisão" on:click={() => insert("/")}>/</button>
-    <button title="Vezes" on:click={() => insert("*")}>*</button>
+    <button title="Multiplicação" on:click={() => insert("*")}>*</button>
     <button title="Sete" on:click={() => insert("7")}>7</button>
     <button title="Oito" on:click={() => insert("8")}>8</button>
     <button title="Nove" on:click={() => insert("9")}>9</button>
@@ -80,7 +80,7 @@
     outline: hidden;
   }
   button {
-    color: var(--background-0-inverse);
+    color: var(--font-color-1);
     background: none;
     padding: 1rem;
     margin: 0.1rem;
@@ -104,8 +104,7 @@
   }
 
   button:hover {
-    color: #fff;
-    background-color: #191919;
+    background-color: var(--background-2);
     cursor: pointer;
   }
 </style>

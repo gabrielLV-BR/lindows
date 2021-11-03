@@ -1,5 +1,6 @@
 <script>
   import { clickOutside } from "../modules/clickOutside";
+  import { globalVariables } from "../store";
 
   export let launch = (_) => null;
   export let apps = [];
@@ -30,6 +31,11 @@
     }
     return sorted;
   }
+  let dark = document.body.className == "dark";
+
+globalVariables.subscribe((newVal) => {
+  dark = newVal.theme === "dark";
+});
 </script>
 
 <main use:clickOutside on:click_outside={handleClickOutside} class="start-menu">
@@ -44,7 +50,7 @@
           />
           <label for="checkbox-{appSection.letter}" class="partition">
             {appSection.letter}
-            <img src="../res/images/arrow.svg" alt="" class="after">
+            <img src="../res/images/arrow.svg" id="arrow" alt="" class="after" class:dark>
           </label>
           <section class="content">
             {#each appSection.apps as app (app)}
@@ -80,8 +86,12 @@
 </main>
 
 <style scoped lang="scss">
+  // teste da class 'dark'
+  .dark {
+    fill: red;
+  }
   .start-menu {
-    opacity: 0.9;
+    opacity: .9;
 
     position: fixed;
     left: 0;
@@ -98,10 +108,11 @@
   }
 
   img {
-    margin: 0 0.8rem;
     width: 1.5rem;
   }
-
+  #arrow {
+    filter: invert(1);
+  }
   .app-search {
     width: 100%;
     margin: 0;

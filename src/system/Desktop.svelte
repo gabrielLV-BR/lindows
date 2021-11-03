@@ -1,15 +1,18 @@
 <script>
   import { v1 as uuid } from "uuid";
-
+  
+  import { globalVariables } from "../store";
+  
   import Window from "./utils/Window.svelte";
   import Icon from "./utils/Icon.svelte";
   import StartMenu from "./StartMenu.svelte";
   import Time from "./utils/Time.svelte";
+  import Calendario from "./utils/Calendario.svelte"
 
   import Programas, { findProgram } from "../Apps";
 
+  let calendarioAberto = false;
   let menuInicialAberto = false;
-
   let aplicativosAbertos = [];
   let iconesDoDesktop = [...Programas];
 
@@ -25,6 +28,10 @@
         focused: false,
       },
     ];
+  };
+
+  const handleClickTime = () => {
+    calendarioAberto = !calendarioAberto;
   };
 
   const handleClickStart = () => {
@@ -68,6 +75,14 @@
       return app;
     });
   };
+
+
+  let dark = document.body.className == "dark";
+
+  globalVariables.subscribe((newVal) => {
+    dark = newVal.theme === "dark";
+  });
+
 </script>
 
 <div class="tela">
@@ -93,8 +108,11 @@
       {#if menuInicialAberto}
         <StartMenu handleClickOutside={() => menuInicialAberto = false} {launch} apps={iconesDoDesktop} />
       {/if}
+      {#if calendarioAberto}
+        <Calendario handleClickOutside={() => calendarioAberto = false}/>
+      {/if}
       <button class="início" on:click={handleClickStart}>
-        <img src="res/images/logo2.png" alt="Botão do início" />
+        <img src="res/images/logo2.png" alt="Botão do início" id="img-home-button" class:dark/>
       </button>
       <span class="aplicativos-abertos">
         {#each aplicativosAbertos as app (app.id)}
@@ -106,12 +124,15 @@
           />
         {/each}
       </span>
-      <Time />
+      <Time onClick={handleClickTime}/>
     </div>
   </footer>
 </div>
 
 <style lang="scss">
+  .dark {
+    filter: invert(1);
+  }
   .tela {
     display: flex;
     flex-direction: column;
@@ -120,7 +141,7 @@
     height: 100vh;
     margin: 0;
 
-    background-image: url("../res/images/wallpaper2.jpg");
+    background-image: var(--background-desktop);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -149,8 +170,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-
-        gap: 1rem;
+        border-radius: 1rem;
       }
 
       padding: 0 1rem;
@@ -170,7 +190,6 @@
 
       height: 3.5rem;
       width: 80%;
-      border-radius: 7px;
 
       z-index: 15;
 
@@ -180,8 +199,8 @@
       box-shadow: 0 0 2px var(--background-0) inset;
 
       .início {
-        height: 2.8rem;
-        width: 2.8rem;
+        height: 2.9rem;
+        width: 2.9rem;
         background: none;
 
         margin: 0 0.5rem 0 0.2rem;

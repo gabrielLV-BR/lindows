@@ -36,7 +36,7 @@
   .dark {
     filter: invert(1);
   }
-
+  
   .icon.desktop {
     margin: 1rem;
     width: 7rem;
@@ -54,8 +54,7 @@
   }
 
   .icon {
-    &,
-    .img-container {
+    &, .img-container {
       display: flex;
       align-items: center;
       justify-content: center;

@@ -291,4 +291,7 @@
             color: white;
         }
     }
+    input[type="submit"] {
+        cursor: pointer;
+    }
 </style>

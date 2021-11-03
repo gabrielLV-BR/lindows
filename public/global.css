@@ -1,3 +1,7 @@
+:root {
+	--background-desktop: url("../res/images/wallpaper2.jpg");
+}
+
 .light {
 	--background-0: #ffffff;
 	--background-1: #dadada;
@@ -6,6 +10,7 @@
 	--font-color-0: #000000;
 	--font-color-1: #101010;
 	--font-color-2: #272727;
+	--font-color-3: #999999;
 
 	--background-0-inverse: var(--font-color-0);
 	--background-1-inverse: var(--font-color-1);
@@ -22,6 +27,7 @@
 	--font-color-0: #ffffff;
 	--font-color-1: #dadada;
 	--font-color-2: #bebebe;
+	--font-color-3: #505050;
 
 	--background-0-inverse: var(--font-color-0);
 	--background-1-inverse: var(--font-color-1);

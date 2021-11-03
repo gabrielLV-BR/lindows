@@ -19,8 +19,10 @@
     clearInterval(intervalo);
     intervalo = -1;
   }
-  // Reinicia o tempo
+  // Reinicia e para o tempo
   function reiniciar() {
+    clearInterval(intervalo);
+    intervalo = -1;
     segundos = 0;
     milisegundos = 0;
   }
@@ -36,30 +38,35 @@
 </main>
 
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
   .cronometro {
     flex: 1;
     text-align: center;
   }
   button {
     color: var(--font-color-1);
-    background-color: var(--background-2);
-    width: 20%;
-    font-size: 20px;
+    background-color: var(--background-1);
+    width: 7rem;
+    font-size: 1.3rem;
+    padding: 1rem;
   }
   button:hover {
     color: var(--font-color-1);
-    background-color: var(--background-1);
+    background-color: var(--background-2);
     cursor: pointer;
   }
   #timer {
-    width: 50%;
-    font-size: 30px;
-    padding: 2%;
-    background-color: var(--background-2);
+    width: 14rem;
+    font-size: 2rem;
+    padding: 1rem;
+    background-color: var(--background-1);
     margin: 5% auto;
   }
   button,
   #timer {
-    border-radius: 3px;
+    border-radius: .5rem;
   }
 </style>

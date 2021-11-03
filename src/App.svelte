@@ -1,16 +1,16 @@
 <script>
-	import LogIn from "./system/login/LoginPage.svelte";
 	import Desktop from "./system/Desktop.svelte";
+	// import LogIn from "./system/login/LoginPage.svelte";
 
-	let hasLoggedIn = false;
+	// let hasLoggedIn = false;
 
-	function logIn() {
-		hasLoggedIn = true;
-	}
+	// function logIn() {
+		// hasLoggedIn = true;
+	// }
 </script>
 
-{#if !hasLoggedIn}
-	<LogIn enter={logIn} />
-{:else}
+<!-- {#if !hasLoggedIn} -->
+	<!-- <LogIn enter={logIn} /> -->
+<!-- {:else} -->
 	<Desktop />
-{/if}
+<!-- {/if} -->
