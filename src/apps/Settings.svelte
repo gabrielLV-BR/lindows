@@ -109,8 +109,8 @@
     </div>
   </li>
   <li>
-    <button on:click={reset} id="toggleTheme"
-      >Formatar Computador (IRREVERSÍVEL)</button
+    <p on:click={reset} class="reset"
+      >Formatar Computador (IRREVERSÍVEL)</p
     >
   </li>
 </ul>
@@ -139,6 +139,15 @@
     width: 12rem;
     height: 3rem;
     border-radius: 0.7rem;
+  }
+  .reset {
+    background-color: var(--error);
+    color: #fff;
+    text-align: center;
+    width: auto;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    margin: 1.5rem 0 1.5rem 0;
   }
   .titleConfig {
     width: auto;
