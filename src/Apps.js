@@ -8,6 +8,7 @@ import _Lista from "./apps/Lista.svelte";
 import _Dinogame from "./apps/jogos/Dinogame.svelte";
 import _Configuracoes from "./apps/Settings.svelte";
 import _Galeria from "./apps/Galeria.svelte";
+import _Notas from "./apps/Notas.svelte";
 
 const Navegador = {
     name: "Navegador",
@@ -58,6 +59,13 @@ const Galeria = {
     app: _Galeria
 }
 
+const Notas = {
+    name: "Notas",
+    id: "notas",
+    image:"../res/icons/notas.png",
+    app: _Notas
+}
+
 const Programas = [
     Navegador,
     Cronometro,
@@ -65,7 +73,8 @@ const Programas = [
     Lista,
     Dinogame,
     Settings,
-    Galeria
+    Galeria,
+    Notas
 ]
 
 function sortByName(a, b) {
