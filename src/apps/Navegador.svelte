@@ -190,6 +190,7 @@
 
         .img {
           background-image: url(../res/images/close.svg);
+          background-repeat: no-repeat;
         }
       }
 
@@ -339,7 +340,7 @@
 
     label:not(:last-of-type)::before {
       left: 7px;
-      background-image: url(images/world.svg);
+      background-image: url(../res/images/world.svg);
     }
   }
 
