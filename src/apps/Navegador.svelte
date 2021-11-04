@@ -6,6 +6,12 @@
   let isDark = false;
   let downloading = false;
 
+  const randomLinks = [
+    "https://www.youtube.com/embed/54W8kktFE_o",
+    "https://www.youtube.com/embed/vUGM36RPVtA",
+    "https://www.youtube.com/embed/od-gD1yGSNc"
+  ];
+
   let alreadyInstalledApps = [];
 
   globalVariables.subscribe((newVal) => {
@@ -110,15 +116,53 @@
         {/each}
       </article>
     </section>
-    <section class="b" />
-    <section class="c" />
+    <section class="b">
+      <iframe
+        width="100%"
+        height="100%"
+        src="{randomLinks[Math.floor(Math.random() * randomLinks.length)]}"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </section>
+    <section class="c">
+      <h1>Nosso site maneiro</h1>
+
+      <ul>
+        <li>Obrigado por visitar!</li>
+        <li>Feito com muito amor e carinho por...</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <td>DESENVOLVEDOR 1</td>
+            <td>DESENVOLVEDOR 2</td>
+            <td>DESENVOLVEDOR 3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FELIPE CARDOSO</td>
+            <td>GABRIEL LOVATO</td>
+            <td>NICOLAS SARAIVA</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </main>
 </div>
 
 <style scoped lang="scss">
-  .a {
+  .content,
+  .a,
+  .a article {
     background: var(--background-2);
+  }
 
+  .a {
     height: 100%;
 
     h1 {
@@ -220,6 +264,32 @@
         height: 2rem;
         background: green;
       }
+    }
+  }
+
+  .c {
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      font-family: serif;
+      text-transform: capitalize;
+      font-weight: bold;
+      padding: 0.3rem;
+      background-image: linear-gradient(to right, blue, purple, red, orange, yellow, green);
+      background-clip: padding-box;
+      -webkit-background-clip: text;
+      color: transparent;
+      transform: skewX(10deg);
+    }
+
+    table, ul {
+      display: block;
+      width: fit-content;
+      margin: auto;
+    }
+
+    table, td, tr {
+      border: 1px solid var(--background-0-inverse);
     }
   }
 
@@ -342,20 +412,6 @@
       left: 7px;
       background-image: url(../res/images/world.svg);
     }
-  }
-
-  input#a:checked ~ header label[for="a"]::after,
-  input#b:checked ~ header label[for="b"]::after,
-  input#c:checked ~ header label[for="c"]::after,
-  input#d:checked ~ header label[for="d"]::after {
-    right: 7px;
-
-    transform: translateY(-40%);
-
-    background-color: var(--browser-gray);
-
-    background-image: url(images/close.svg);
-    background-size: contain;
   }
 
   /* CSS para as Guias */
