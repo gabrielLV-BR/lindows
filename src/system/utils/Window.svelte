@@ -128,9 +128,9 @@
       <span>{name}</span>
       <!-- Botões de ação -->
       <span>
-        <button class="btn-window" id="btn-min" on:click={minimizar} />
-        <button class="btn-window" id="btn-max" on:click={maximizar} />
-        <button class="btn-window" id="btn-cls" on:click={fechar} />
+        <button title="Minimizar" class="btn-window" id="btn-min" on:click={minimizar} />
+        <button title="Maximixar" class="btn-window" id="btn-max" on:click={maximizar} />
+        <button title="Fechar" class="btn-window" id="btn-cls" on:click={fechar} />
       </span>
     </header>
   {/if}
