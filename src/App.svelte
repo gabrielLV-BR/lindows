@@ -6,6 +6,11 @@
 	import { onMount, onDestroy } from "svelte";
 
 	let hasLoggedIn = false;
+	let installedApps = [];
+
+	globalVariables.subscribe(newVal => {
+		installedApps = newVal.installedApps
+	})
 
 	function handleResize(event) {
 		globalVariables.set({
@@ -18,14 +23,30 @@
 		hasLoggedIn = true;
 	}
 
-	onMount(() => window.addEventListener("resize", handleResize));
+
+	function mount() {
+		window.addEventListener("resize", handleResize)
+
+		if(localStorage['installed-apps']) {
+			installedApps = JSON.parse((localStorage['installed-apps']))
+			globalVariables.update(val => {
+				return {
+					...val,
+					installedApps
+				}
+			})
+		}
+
+	}
+
+	onMount(mount);
 	onDestroy(() => window.removeEventListener("resize", handleResize));
 </script>
 
 <!-- Essa página é quem troca entre a tela de login e o Desktop -->
-
+<!-- 
 {#if !hasLoggedIn}
 	<LogIn enter={logIn} />
-{:else}
+{:else} -->
 	<Desktop />
-{/if}
+<!-- {/if} -->

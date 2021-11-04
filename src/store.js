@@ -2,9 +2,14 @@
 // A diferença entre uma store e um arquivo normal é que uma store
 // faz os componentes serem re-desenhados
 
-import { writable, derived } from "svelte/store";
+import { writable } from "svelte/store";
+import { findProgram } from "./Apps";
 
 export const globalVariables = writable({
     theme: "light",
-    isMobile: false
+    isMobile: false,
+    installedApps: [
+        findProgram('navegador'), 
+        findProgram('config')
+    ]
 });

@@ -7,7 +7,16 @@
   function toggleTheme() {
     const theme = document.body.className == "light" ? "dark" : "light";
     document.body.className = theme;
-    globalVariables.set({ ...globalVariables, theme });
+
+    globalVariables.update(val => {
+      return {
+        ...val,
+        theme
+      }
+    })
+
+    // prrrffttt (som de peido)
+
     themeText = document.body.className.toUpperCase();
   }
   function changeWallpaper(imgNum) {
@@ -17,10 +26,7 @@
     );
   }
   function changeFont(font) {
-    document.body.style.setProperty(
-      "--system-font",
-      `${font}`
-    );
+    document.body.style.setProperty("--system-font", `${font}`);
   }
 </script>
 
@@ -36,47 +42,85 @@
       <img
         src="../res/images/wallpaper1.jpg"
         on:click={() => changeWallpaper(1)}
+        alt="Background"
       />
       <img
         src="../res/images/wallpaper2.jpg"
         on:click={() => changeWallpaper(2)}
+        alt="Background"
       />
       <img
         src="../res/images/wallpaper3.jpg"
         on:click={() => changeWallpaper(3)}
+        alt="Background"
       />
-    </div>
-    <div class="allWallpapers">
       <img
         src="../res/images/wallpaper4.jpg"
         on:click={() => changeWallpaper(4)}
+        alt="Background"
       />
       <img
         src="../res/images/wallpaper5.jpg"
         on:click={() => changeWallpaper(5)}
+        alt="Background"
       />
       <img
         src="../res/images/wallpaper6.jpg"
         on:click={() => changeWallpaper(6)}
+        alt="Background"
       />
     </div>
   </li>
   <li>
     <p class="titleConfig">Fontes do sistema:</p>
     <div class="allFonts">
-      <span class="fontes" id="fonte1" on:click={() => changeFont("-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif")}>Apple System</span>
-      <span class="fontes" id="fonte2" on:click={() => changeFont('ubuntu')}>Ubuntu</span>
-      <span class="fontes" id="fonte3" on:click={() => changeFont('anonymous pro')}>Anonymous Pro</span>
-      <span class="fontes" id="fonte4" on:click={() => changeFont('ceviche one')}>Ceviche One</span>
-      <span class="fontes" id="fonte5" on:click={() => changeFont('dancing script')}>Dancing Script</span>
+      <span
+        class="fontes"
+        id="fonte1"
+        on:click={() =>
+          changeFont(
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+          )}>Apple System</span
+      >
+      <span class="fontes" id="fonte2" on:click={() => changeFont("ubuntu")}
+        >Ubuntu</span
+      >
+      <span
+        class="fontes"
+        id="fonte3"
+        on:click={() => changeFont("anonymous pro")}>Anonymous Pro</span
+      >
+      <span
+        class="fontes"
+        id="fonte4"
+        on:click={() => changeFont("ceviche one")}>Ceviche One</span
+      >
+      <span
+        class="fontes"
+        id="fonte5"
+        on:click={() => changeFont("dancing script")}>Dancing Script</span
+      >
     </div>
   </li>
 </ul>
 
 <style scoped lang="scss">
   ul {
+    width: 100%;
     list-style: none;
+    &,
+    li {
+      padding: 1rem 2rem;
+    }
   }
+
+  .allWallpapers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   #toggleTheme {
     background-color: var(--background-1);
     color: var(--font-color-1);
@@ -93,13 +137,9 @@
     color: var(--font-color-2);
     border-radius: 0.7rem;
   }
-  .allWallpapers {
-    display: flex;
-    flex-direction: row;
-  }
+
   img {
-    width: 9rem;
-    height: 5rem;
+    width: 15rem;
     border-radius: 0.5rem;
     // padding em 'rem' desregula o border-radius da img
     padding: 3px;
@@ -110,16 +150,16 @@
     }
   }
   .allFonts {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
   .fontes {
     width: 14rem;
     border-radius: 0.5rem;
     background-color: var(--background-0);
     color: var(--font-color-1);
-    padding: .5rem;
-    margin: .2rem auto;
+    padding: 0.5rem;
+    margin: 0.2rem auto;
     border: 1px solid var(--background-1);
     text-align: center;
     font-size: 1.1rem;
@@ -143,14 +183,5 @@
   }
   #fonte5 {
     font-family: "dancing script";
-  }
-
-
-  @media (max-width: 600px) {
-    .allWallpapers {
-      flex-direction: column;
-      width: 16rem;
-      height: 9rem;
-    }
   }
 </style>

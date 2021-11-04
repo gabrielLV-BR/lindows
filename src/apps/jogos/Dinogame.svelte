@@ -302,6 +302,7 @@
     width="200px"
     height="150px"
     on:keydown={handleInput}
+    on:click={jump}
     bind:this={canvas}
   />
 
@@ -355,8 +356,7 @@
     display: block;
     margin: auto;
 
-    width: auto;
-    height: 90%;
+    width: 100%;
 
     aspect-ratio: 499/465;
   }

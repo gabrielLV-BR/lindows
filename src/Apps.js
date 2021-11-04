@@ -51,8 +51,6 @@ const Settings = {
     app: _Configuracoes
 }
 
-
-
 const Galeria = {
     name: "Galeria",
     id: "galeria",

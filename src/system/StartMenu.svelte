@@ -1,7 +1,6 @@
 <!-- 
   O StartMenu é um lançador de aplicativos compacto
 -->
-
 <script>
   import { clickOutside } from "../modules/clickOutside";
   import { globalVariables } from "../store";
@@ -41,13 +40,17 @@
   }
   let dark = document.body.className == "dark";
 
-globalVariables.subscribe((newVal) => {
-  dark = newVal.theme === "dark";
-});
+  globalVariables.subscribe((newVal) => {
+    dark = newVal.theme === "dark";
+  });
 </script>
 
 <!-- O use: nos permite adicionar eventos customizados -->
-<main use:clickOutside on:click_outside={handleClickOutside} class="start-menu">
+<main
+  use:clickOutside
+  on:click_outside={handleClickOutside}
+  class="start-menu isMobile"
+>
   <div class="app-list">
     {#if search === ""}
       {#each partitionedApps as appSection (appSection.letter)}
@@ -59,7 +62,13 @@ globalVariables.subscribe((newVal) => {
           />
           <label for="checkbox-{appSection.letter}" class="partition">
             {appSection.letter}
-            <img src="../res/icons/arrow.png" id="arrow" alt="" class="after" class:dark />
+            <img
+              src="../res/icons/arrow.png"
+              id="arrow"
+              alt=""
+              class="after"
+              class:dark
+            />
           </label>
           <section class="content">
             {#each appSection.apps as app (app)}
@@ -102,16 +111,17 @@ globalVariables.subscribe((newVal) => {
   .dark {
     filter: invert(1);
   }
+  
   .start-menu {
-    opacity: .9;
+    opacity: 0.9;
 
     position: fixed;
     left: 0;
     bottom: 4rem;
-
+    
     background: var(--background-1);
     color: black;
-
+    
     width: 17rem;
 
     overflow: hidden;
@@ -197,6 +207,14 @@ globalVariables.subscribe((newVal) => {
       p:hover {
         filter: brightness(1.3);
       }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .start-menu {
+      left: 4.5rem;
+      top: 0.3rem;
+      bottom: unset;
     }
   }
 </style>

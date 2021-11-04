@@ -5,26 +5,24 @@
 <script>
   // Vai ser utilizado para atribuir um id único para cada "processo"
   import { v1 as uuid } from "uuid";
-  
+
   import { globalVariables } from "../store";
-  
+
   import Window from "./utils/Window.svelte";
   import Icon from "./utils/Icon.svelte";
   import StartMenu from "./StartMenu.svelte";
   import Time from "./utils/Time.svelte";
-  import Calendario from "./utils/Calendario.svelte"
+  import Calendario from "./utils/Calendario.svelte";
 
-  import Programas, { findProgram } from "../Apps";
+  import { findProgram } from "../Apps";
 
   let calendarioAberto = false;
   let menuInicialAberto = false;
   let aplicativosAbertos = [];
-  let iconesDoDesktop = [...Programas];
-
-  let isMobile = false;
+  export let iconesDoDesktop = [];
 
   globalVariables.subscribe((newVal) => {
-    isMobile = newVal.isMobile;
+    iconesDoDesktop = newVal.installedApps;
   });
 
   // Funções
@@ -96,7 +94,6 @@
     });
   };
 
-
   let dark = document.body.className == "dark";
 
   globalVariables.subscribe((newVal) => {
@@ -122,7 +119,6 @@
         Podemos passar valores e funções para os componentes,
         chamadas de propriedades
       -->
-
       <Icon
         desktop
         name={icone.name}
@@ -139,7 +135,11 @@
     apareça no hover 
   -->
   <footer class="barra-de-tarefas-wrapper">
-    <div class="barra-de-tarefas" class:menuInicialAberto>
+    <div
+      class="barra-de-tarefas"
+      class:menuInicialAberto
+      class:calendarioAberto
+    >
       {#if menuInicialAberto}
         <StartMenu
           handleClickOutside={() => (menuInicialAberto = false)}
@@ -148,10 +148,15 @@
         />
       {/if}
       {#if calendarioAberto}
-        <Calendario handleClickOutside={() => calendarioAberto = false}/>
+        <Calendario handleClickOutside={() => (calendarioAberto = false)} />
       {/if}
       <button class="início" on:click={handleClickStart}>
-        <img src="res/images/logo2.png" alt="Botão do início" id="img-home-button" class:dark/>
+        <img
+          src="res/images/logo2.png"
+          alt="Botão do início"
+          id="img-home-button"
+          class:dark
+        />
       </button>
       <span class="aplicativos-abertos">
         {#each aplicativosAbertos as app (app.id)}
@@ -163,7 +168,9 @@
           />
         {/each}
       </span>
-      <Time onClick={handleClickTime}/>
+      <span class="time">
+        <Time onClick={handleClickTime} />
+      </span>
     </div>
   </footer>
   <!-- 
@@ -224,7 +231,8 @@
     width: 100vw;
 
     &:hover > .barra-de-tarefas,
-    .barra-de-tarefas.menuInicialAberto {
+    .barra-de-tarefas.menuInicialAberto,
+    .barra-de-tarefas.calendarioAberto {
       transform: translateY(-15px);
       transition: transform 100ms ease-out;
     }
@@ -289,7 +297,7 @@
     bottom: 0;
     right: 0;
     width: 90vw;
-    height: 5rem;
+    height: 4rem;
 
     background: rgba(0, 0, 0, 0.5);
 
@@ -315,22 +323,33 @@
       margin-left: 10vw;
     }
 
+    .time {
+      width: 250px;
+      transform: rotate(90deg);
+    }
+
     .barra-de-tarefas-wrapper {
       left: 0;
       top: 0;
 
       width: 10vw;
       height: 100vh;
-      
+
       margin: 0;
       padding: 0;
+
+      &:hover > .barra-de-tarefas,
+      .barra-de-tarefas.menuInicialAberto,
+      .barra-de-tarefas.calendarioAberto {
+        transform: translateY(0px);
+      }
 
       .barra-de-tarefas {
         transform: translateY(0px);
         align-items: center;
 
         opacity: 1;
-        border-radius: 1;
+        border-radius: 0;
 
         margin: 0;
         padding: 0;

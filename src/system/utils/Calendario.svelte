@@ -75,6 +75,7 @@
   .calendario {
     opacity: .9;
     position: fixed;
+
     right: 0;
     bottom: 4rem;
 
@@ -110,5 +111,13 @@
   }
   #diaSemana td {
     padding: 0 0.3rem 1rem 0.3rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    .calendario {
+      right: unset;
+      left: 4.5rem;
+      bottom: 5.5rem;
+    }
   }
 </style>

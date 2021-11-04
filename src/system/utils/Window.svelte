@@ -295,9 +295,10 @@
       display: none;
     }
 
-    left: 0px;
+    left: 10vw;
     top: 0px;
-    width: 100vw;
+    width: 90vw;
     height: 100vh;
+    border-radius: 0;
   }
 </style>
