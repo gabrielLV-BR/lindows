@@ -28,6 +28,12 @@
   function changeFont(font) {
     document.body.style.setProperty("--system-font", `${font}`);
   }
+
+  function reset() {
+    localStorage.clear();
+    location.reload();
+  }
+
 </script>
 
 <ul>
@@ -101,6 +107,11 @@
         on:click={() => changeFont("dancing script")}>Dancing Script</span
       >
     </div>
+  </li>
+  <li>
+    <button on:click={reset} id="toggleTheme"
+      >Formatar Computador (IRREVERSÍVEL)</button
+    >
   </li>
 </ul>
 

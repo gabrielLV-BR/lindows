@@ -22,6 +22,7 @@
   export let iconesDoDesktop = [];
 
   globalVariables.subscribe((newVal) => {
+    console.log(newVal.installedApps)
     iconesDoDesktop = newVal.installedApps;
   });
 

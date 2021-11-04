@@ -4,6 +4,7 @@
 <script>
   import { clickOutside } from "../modules/clickOutside";
   import { globalVariables } from "../store";
+  import { sortByName } from '../Apps';
 
   // Quando exportamos variáveis, as fazemos disponíveis pra serem
   // passadas como propriedades
@@ -13,13 +14,13 @@
 
   // Variáveis prefixadas com $: são reativas: elas dependem de um valor
   // de uma variável mutável e ela atualiza de acordo
-  $: partitionedApps = partitionApps(apps);
+  $: partitionedApps = partitionApps(apps.sort(sortByName));
 
   let search = "";
 
   function partitionApps(apps) {
     let sorted = [];
-    let currentLetter = apps[0].name[0];
+    let currentLetter = apps[0].name[0] ?? '#';
     let currentAppList = [];
 
     for (let app of apps) {
@@ -36,6 +37,9 @@
       }
       currentAppList = [...currentAppList, app];
     }
+
+    if(sorted == []) return [{letter: '#', apps: []}];
+
     return sorted;
   }
   let dark = document.body.className == "dark";

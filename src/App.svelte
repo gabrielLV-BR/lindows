@@ -13,9 +13,11 @@
 	})
 
 	function handleResize(event) {
-		globalVariables.set({
-			...globalVariables, 
-			isMobile: innerWidth < 600
+		globalVariables.update(oldVal => {
+			return {
+				...oldVal, 
+				isMobile: innerWidth < 600
+			}
 		})
 	}
 
@@ -36,7 +38,6 @@
 				}
 			})
 		}
-
 	}
 
 	onMount(mount);
@@ -45,8 +46,8 @@
 
 <!-- Essa página é quem troca entre a tela de login e o Desktop -->
 
-{#if !hasLoggedIn}
+<!-- {#if !hasLoggedIn}
 	<LogIn enter={logIn} />
-{:else}
+{:else} -->
 	<Desktop />
-{/if}
+<!-- {/if} -->

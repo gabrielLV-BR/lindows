@@ -77,7 +77,7 @@ const Programas = [
     Notas
 ]
 
-function sortByName(a, b) {
+export function sortByName(a, b) {
     if(a.name < b.name) return -1;
     else if(a.name > b.name) return 1;
     return 0;

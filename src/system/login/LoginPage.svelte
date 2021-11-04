@@ -35,9 +35,6 @@
 
     function handleLogin(event) {
         if (hasAccount) {
-            console.log(localStorage.getItem("user-name"))
-
-            console.log(`${hash(senha)} == ${localStorage.getItem("user-password")}?`)
             if (
                 nome == localStorage.getItem("user-name") &&
                 hash(senha) == localStorage.getItem("user-password")
@@ -53,8 +50,6 @@
             }
 
             // É hard-coded mas é mais uma piada do que algo sério
-            console.log(captcha.replaceAll(" ", "").toLowerCase())
-            
             if (
                 captcha.replaceAll(" ", "").toLowerCase() !== "onepieceehruim"
             ) {
