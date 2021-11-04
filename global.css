@@ -1,0 +1,122 @@
+/* fontes: Ubunto, Anonymous Pro*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ceviche+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+:root {
+	--background-desktop: url("../res/images/wallpaper2.jpg");
+	--system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.light {
+	--background-0: #ffffff;
+	--background-1: #dadada;
+	--background-2: #bebebe;
+
+	--font-color-0: #000000;
+	--font-color-1: #101010;
+	--font-color-2: #272727;
+	--font-color-3: #999999;
+
+	--background-0-inverse: var(--font-color-0);
+	--background-1-inverse: var(--font-color-1);
+	--background-2-inverse: var(--font-color-2);
+
+	--error: #bb0011;
+}
+
+.dark {
+	--background-0: #141414;
+	--background-1: #242424;
+	--background-2: #343434;
+
+	--font-color-0: #ffffff;
+	--font-color-1: #dadada;
+	--font-color-2: #bebebe;
+	--font-color-3: #505050;
+
+	--background-0-inverse: var(--font-color-0);
+	--background-1-inverse: var(--font-color-1);
+	--background-2-inverse: var(--font-color-2);
+
+	--error: #880011;
+}
+
+html, body {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+body {
+	color: #333;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: var(--system-font);
+}
+
+* {
+	box-sizing: border-box;
+	color: var(--font-color-1);
+	transition: background-color 200ms;
+}
+
+a {
+	color: rgb(0,100,200);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: rgb(0,80,160);
+}
+
+label {
+	display: block;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+button {
+	color: #333;
+	background-color: #f4f4f4;
+	outline: none;
+	border: 0;
+}
+
+button:disabled {
+	color: #999;
+}
+
+button:not(:disabled):active {
+	background-color: #ddd;
+}
+
+button:focus {
+	border-color: #666;
+}
+
+
+@media screen and (max-width: 1400px) {
+	:root {
+		font-size: 12px;
+	}
+}
