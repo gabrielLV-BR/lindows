@@ -44,8 +44,8 @@
 </script>
 
 <!-- Essa página é quem troca entre a tela de login e o Desktop -->
-<!-- 
-{#if !hasLoggedIn}
+
+<!-- {#if !hasLoggedIn}
 	<LogIn enter={logIn} />
 {:else} -->
 	<Desktop />
