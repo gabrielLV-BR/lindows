@@ -245,6 +245,7 @@
         flex-direction: row;
         align-items: center;
         border-radius: 1rem;
+        
       }
 
       padding: 0 1rem;
@@ -252,6 +253,7 @@
       .aplicativos-abertos {
         max-width: 80%;
         overflow: hidden;
+        
       }
 
       display: block;
@@ -268,7 +270,7 @@
       z-index: 15;
 
       background-color: var(--background-1);
-      opacity: 0.7;
+      opacity: 0.8;
 
       box-shadow: 0 0 2px var(--background-0) inset;
 

@@ -15,8 +15,6 @@
       }
     })
 
-    // prrrffttt (som de peido)
-
     themeText = document.body.className.toUpperCase();
   }
   function changeWallpaper(imgNum) {
@@ -38,8 +36,8 @@
 
 <ul>
   <li>
-    <button on:click={toggleTheme} id="toggleTheme"
-      >Mudar o tema: {themeText}</button
+    <p on:click={toggleTheme} id="toggleTheme"
+      >Mudar o tema: {themeText}</p
     >
   </li>
   <li>
@@ -116,6 +114,10 @@
 </ul>
 
 <style scoped lang="scss">
+  * {
+    margin: 0;
+    padding: 0;
+  }
   ul {
     width: 100%;
     list-style: none;
@@ -136,8 +138,8 @@
     background-color: var(--background-1);
     color: var(--font-color-1);
     text-align: center;
-    width: 12rem;
-    height: 3rem;
+    width: auto;
+    padding: 1rem;
     border-radius: 0.7rem;
   }
   .reset {
@@ -148,6 +150,7 @@
     border-radius: 0.7rem;
     padding: 1rem;
     margin: 1.5rem 0 1.5rem 0;
+    cursor: pointer;
   }
   .titleConfig {
     width: auto;
@@ -159,7 +162,7 @@
   }
 
   img {
-    width: 15rem;
+    width: 10rem;
     border-radius: 0.5rem;
     // padding em 'rem' desregula o border-radius da img
     padding: 3px;
@@ -174,7 +177,7 @@
     flex-direction: column;
   }
   .fontes {
-    width: 14rem;
+    width: 80%;
     border-radius: 0.5rem;
     background-color: var(--background-0);
     color: var(--font-color-1);

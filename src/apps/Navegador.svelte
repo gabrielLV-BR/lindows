@@ -160,6 +160,7 @@
   .a,
   .a article {
     background: var(--background-2);
+    text-align: center;
   }
 
   .a {
@@ -179,7 +180,7 @@
     }
 
     article {
-      padding: 0 0.5rem;
+      padding: 0 2rem;
       display: flex;
       flex-direction: row;
       gap: 0.91rem;
@@ -245,6 +246,7 @@
 
       .download-complete .img {
         background-image: url(../res/images/check.svg);
+        background-repeat: no-repeat;
 
         display: block;
         width: 25px;

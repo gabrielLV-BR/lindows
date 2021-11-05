@@ -37,7 +37,7 @@
 
 <main class="all">
   <div class="salvos">
-    <header class="adicionar" on:click={adicionarNota}>Add Note</header>
+    <header class="adicionar" on:click={adicionarNota}>Criar nota</header>
     {#each notasSalvas as nota, i (nota)}
       <p class="listaTitulos" on:click={() => verNota(i)}>
         {nota.titulo}
@@ -91,6 +91,7 @@
     }
   }
   .tituloNota {
+    font-weight: bold;
     width: 100%;
     padding: 0.6rem;
     background-color: var(--background-1);
